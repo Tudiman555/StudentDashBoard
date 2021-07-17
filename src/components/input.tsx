@@ -1,65 +1,29 @@
 import React from "react";
+import { InputHTMLAttributes } from "react";
 import { useState } from "react";
+import { isPropertyAccessChain, isPropertySignature } from "typescript";
 
-interface Props {
-  name: string;
-  type: "password" | "email" ;
-  placeholder: string;
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+   error? : string
+   touched? : boolean
 }
 
-const Input: React.FC<Props> = (props) => {
-   
-   const [field, setField] = useState("");
-   const [touched, setTouched] = useState(false);
-   
-   const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-      setField(event.target.value);
-   }
-
-   const handleBlur = (event : React.FocusEvent<HTMLInputElement>) => {
-      setTouched(true);
-   }
-
-   let error = "";
-
-   if(props.type == "password") {
-      if(!field) {
-         error= props.name + " is required";
-      }
-      else if(field.length < 8) {
-         error = "Please Enter a Valid " + props.name;
-      }
-   }
-   else if(props.type == "email") {
-      if(!field) {
-         error= props.name + " is required";
-      }
-      else if(!field.endsWith("@gmail.com")) {
-         error = "Please Enter a Valid " + props.name;
-      }
-   }
+const Input: React.FC<Props> = ({error,touched,children,...rest}) => {
 
   return (
     <>
       <div className="pt-11p pb-25p">
          <div className="flex">
-        <label htmlFor={props.name} className="sr-only">
-          {props.name}
+        <label htmlFor={rest.id} className="sr-only">
+           {rest.name}
         </label>
-        {props.children}
+        {children}
         <input
-          name={props.name}
-          type={props.type}
-          placeholder={props.placeholder}
-          id={props.name}
-          autoComplete ={props.name}
-          value={field}
-          onChange = {handleChange}
+          {...rest}
           className="w-full pb-2 pl-6 border-b outline-none"
-          onBlur={handleBlur}
         />
         </div>
-        {touched && <div className="text-xs text-white bg-red-500">{error}</div>}
+        {touched && <div className="pl-6 text-xs text-red-600">{error}</div>}
       </div>
       
     </>

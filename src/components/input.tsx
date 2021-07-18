@@ -1,7 +1,5 @@
 import React from "react";
 import { InputHTMLAttributes } from "react";
-import { useState } from "react";
-import { isPropertyAccessChain, isPropertySignature } from "typescript";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
    error? : string

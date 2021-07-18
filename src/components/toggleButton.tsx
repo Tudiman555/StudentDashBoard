@@ -1,14 +1,13 @@
 import { Switch } from "@headlessui/react";
-import React, { useState } from "react";
 
 interface Props  {
   labelName: string;
   enabled : boolean;
+  type : "button" | "reset" | "submit"; 
   setEnabled : React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ToggleButton: React.FC<Props> = (props) => {
-  const [isEnabled, setIsEnabled] = useState(false);
   const divTheme = props.enabled ? "bg-indigo-600" : "bg-gray-200";
   const trans = props.enabled ? "translate-x-5" : "translate-x-1";
   const spanTheme = props.enabled ? "bg-white" : "bg-indigo-600";
@@ -23,6 +22,7 @@ const ToggleButton: React.FC<Props> = (props) => {
           <Switch
             checked={props.enabled}
             onChange={props.setEnabled}
+            type={props.type}
             className={
               "relative items-center h-5 rounded-full w-9 transition-colors focus:outline-none flex " +
               divTheme

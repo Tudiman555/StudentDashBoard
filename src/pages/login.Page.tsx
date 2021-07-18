@@ -7,44 +7,46 @@ import { FaSpinner } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import ToggleButton from "../components/toggleButton";
 import CheckedBox from "../components/checkedBox";
+import { useFormik } from "formik";
+import * as yupp from "yup";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
-  const [data, setData] = useState({ email: "", password: "" });
-  const [touched, setTouched] = useState({ email: false, password: false });
-  const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
   const history = useHistory();
+  const {
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    touched,
+    values,
+    isSubmitting,
+    errors,
+  } = useFormik({
+    initialValues: { email: "", password: "" },
+    validationSchema: yupp.object().shape({
+      email: yupp.string().required().email(),
+      password: yupp.string().required().min(8),
+    }),
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const changedData = event.target.name;
-    setData({ ...data, [changedData]: event.target.value });
-  };
-
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    const blurredElement = event.target.name;
-    setTouched({ ...touched, [blurredElement]: true });
-  };
-
-  let error = { email: "", password: "" };
-
-  if (!data.email) {
-    error.email = "This Field is Required";
-  } else if (!data.email.endsWith("@gmail.com")) {
-    error.email = "Enter a valid email";
-  }
-
-  if (!data.password) {
-    error.password = "This Field is Required";
-  } else if (data.password.length < 8) {
-    error.password = "Minimum 8 characters are required for password";
-  }
+    onSubmit: (data, { setSubmitting }) => {
+      setTimeout(()=> {
+        console.log("data Submitted", values)
+        history.push("/dashboard")
+      },5000)
+    },
+  });
+  
+     const goToSignUp = () => {
+       history.push("/signUp")
+     }
+  
 
   let isButtonDiabled: boolean = true;
+  console.log(errors.email);
 
-  if (!(error.email || error.password)) {
+  if (!(errors.email || errors.password) && (errors.email != undefined || errors.email != undefined)) {
     isButtonDiabled = false;
   }
 
@@ -61,28 +63,13 @@ const Login: React.FC<Props> = (props) => {
           <p className="mb-12 text-sm font-semibold">
             New Here?{" "}
             <a
-              className="text-indigo-600 border-b border-indigo-600 pb-0.5"
-              href="#"
+              className="text-indigo-600 border-b border-indigo-600 pb-0.5 cursor-pointer"
+              onClick={goToSignUp}
             >
               Create an account
             </a>
           </p>
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-
-              if (error.email || error.password) {
-                console.log("Form Submission Rejected");
-                return;
-              }
-
-              setSubmitting(true);
-              setTimeout(() => {
-                console.log("login successfull");
-                history.push("/dashboard");
-              }, 5000);
-            }}
-          >
+          <form onSubmit={handleSubmit}>
             <Input
               type="email"
               name="email"
@@ -90,9 +77,9 @@ const Login: React.FC<Props> = (props) => {
               placeholder="Email"
               autoComplete="email"
               required
-              value={data.email}
+              value={values.email}
               onChange={handleChange}
-              error={error.email}
+              error={errors.email}
               onBlur={handleBlur}
               touched={touched.email}
             >
@@ -105,9 +92,9 @@ const Login: React.FC<Props> = (props) => {
               placeholder="Password"
               autoComplete="current-password"
               required
-              value={data.password}
+              value={values.password}
               onChange={handleChange}
-              error={error.password}
+              error={errors.password}
               onBlur={handleBlur}
               touched={touched.password}
             >
@@ -118,13 +105,14 @@ const Login: React.FC<Props> = (props) => {
                 labelName="Show Password"
                 enabled={showPassword}
                 setEnabled={setShowPassword}
+                type="button"
               ></ToggleButton>
               <Button
                 title="Log in"
                 type="submit"
                 buttonDisabled={isButtonDiabled}
               ></Button>
-              {submitting && <FaSpinner className="animate-spin"></FaSpinner>}
+              {isSubmitting && <FaSpinner className="animate-spin"></FaSpinner>}
             </div>
             <div className="flex flex-col items-center mt-16">
               <CheckedBox></CheckedBox>
@@ -145,3 +133,6 @@ const Login: React.FC<Props> = (props) => {
 
 Login.defaultProps = {};
 export default Login;
+function yup() {
+  throw new Error("Function not implemented.");
+}

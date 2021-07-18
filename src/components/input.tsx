@@ -6,6 +6,7 @@ import { isPropertyAccessChain, isPropertySignature } from "typescript";
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
    error? : string
    touched? : boolean
+   
 }
 
 const Input: React.FC<Props> = ({error,touched,children,...rest}) => {

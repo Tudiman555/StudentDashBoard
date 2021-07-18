@@ -5,6 +5,7 @@ import Button from "../components/button";
 import { useState } from "react";
 import {FaSpinner} from "react-icons/fa"
 import {useHistory} from "react-router-dom";
+import ToggleButton from "../components/toggleButton"
 
 interface Props {}
 
@@ -12,6 +13,7 @@ const Login: React.FC<Props> = (props) => {
   const [data, setData] = useState({ email: "", password: "" });
   const [touched, setTouched] = useState({ email: false, password: false });
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const history = useHistory();
 
@@ -51,8 +53,8 @@ const Login: React.FC<Props> = (props) => {
     <>
       <div className="w-full lg:w-1/2">
         <div className="flex flex-col justify-center h-screen mx-auto max-w-480p px-x py-y">
-          <h1 className="pb-2 text-4xl">Log In to CODE YOGI</h1>
-          <p className="mb-12 text-sm">New Here? Create an account</p>
+          <h1 className="pb-2 text-4xl">Log In to <a className="font-semibold text-indigo-600" href="#">CODE YOGI</a></h1>
+          <p className="mb-12 text-sm font-semibold">New Here? <a className="text-indigo-600 border-b border-indigo-600 pb-0.5" href="#">Create an account</a></p>
           <form
             onSubmit={(event) => {
               event.preventDefault();
@@ -87,7 +89,7 @@ const Login: React.FC<Props> = (props) => {
               <HiOutlineUser className="w-6 h-6" />
             </Input>
             <Input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               placeholder="Password"
@@ -102,11 +104,14 @@ const Login: React.FC<Props> = (props) => {
               <HiOutlineLockClosed className="w-6 h-6" />
             </Input>
             <div className="flex items-center justify-between">
+            <ToggleButton labelName="Show Password" enabled={showPassword} setEnabled={setShowPassword}></ToggleButton>
             <Button title="Sign in" type="submit" buttonDisabled = {isButtonDiabled}></Button>
             {submitting && <FaSpinner className="animate-spin"></FaSpinner>}
+            
             </div>
             
           </form>
+          
         </div>
       </div>
     </>

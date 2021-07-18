@@ -3,9 +3,10 @@ import Input from "../components/input";
 import { HiOutlineUser, HiOutlineLockClosed } from "react-icons/hi";
 import Button from "../components/button";
 import { useState } from "react";
-import {FaSpinner} from "react-icons/fa"
-import {useHistory} from "react-router-dom";
-import ToggleButton from "../components/toggleButton"
+import { FaSpinner } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
+import ToggleButton from "../components/toggleButton";
+import CheckedBox from "../components/checkedBox";
 
 interface Props {}
 
@@ -24,7 +25,7 @@ const Login: React.FC<Props> = (props) => {
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const blurredElement = event.target.name;
-    setTouched({...touched,[blurredElement]:true});
+    setTouched({ ...touched, [blurredElement]: true });
   };
 
   let error = { email: "", password: "" };
@@ -41,36 +42,45 @@ const Login: React.FC<Props> = (props) => {
     error.password = "Minimum 8 characters are required for password";
   }
 
-  let isButtonDiabled : boolean = true;
-  
-  
-  if(!(error.email || error.password)) {
+  let isButtonDiabled: boolean = true;
+
+  if (!(error.email || error.password)) {
     isButtonDiabled = false;
   }
 
-
   return (
     <>
-      <div className="w-full lg:w-1/2">
+      <div className="w-full tracking-wider lg:w-1/2 font-primary">
         <div className="flex flex-col justify-center h-screen mx-auto max-w-480p px-x py-y">
-          <h1 className="pb-2 text-4xl">Log In to <a className="font-semibold text-indigo-600" href="#">CODE YOGI</a></h1>
-          <p className="mb-12 text-sm font-semibold">New Here? <a className="text-indigo-600 border-b border-indigo-600 pb-0.5" href="#">Create an account</a></p>
+          <h1 className="pb-2 text-4xl">
+            Log In to{" "}
+            <a className="font-semibold text-indigo-600" href="#">
+              CODE YOGI
+            </a>
+          </h1>
+          <p className="mb-12 text-sm font-semibold">
+            New Here?{" "}
+            <a
+              className="text-indigo-600 border-b border-indigo-600 pb-0.5"
+              href="#"
+            >
+              Create an account
+            </a>
+          </p>
           <form
             onSubmit={(event) => {
               event.preventDefault();
-            
-              if(error.email || error.password) {
-                
+
+              if (error.email || error.password) {
                 console.log("Form Submission Rejected");
                 return;
               }
-              
+
               setSubmitting(true);
-              setTimeout(()=>{
+              setTimeout(() => {
                 console.log("login successfull");
                 history.push("/dashboard");
-              },5000)
-              
+              }, 5000);
             }}
           >
             <Input
@@ -86,7 +96,7 @@ const Login: React.FC<Props> = (props) => {
               onBlur={handleBlur}
               touched={touched.email}
             >
-              <HiOutlineUser className="w-6 h-6" />
+              <HiOutlineUser className="w-6 h-6 text-indigo-600" />
             </Input>
             <Input
               type={showPassword ? "text" : "password"}
@@ -101,17 +111,32 @@ const Login: React.FC<Props> = (props) => {
               onBlur={handleBlur}
               touched={touched.password}
             >
-              <HiOutlineLockClosed className="w-6 h-6" />
+              <HiOutlineLockClosed className="w-6 h-6 text-indigo-600" />
             </Input>
-            <div className="flex items-center justify-between">
-            <ToggleButton labelName="Show Password" enabled={showPassword} setEnabled={setShowPassword}></ToggleButton>
-            <Button title="Sign in" type="submit" buttonDisabled = {isButtonDiabled}></Button>
-            {submitting && <FaSpinner className="animate-spin"></FaSpinner>}
-            
+            <div className="flex flex-wrap items-center justify-between">
+              <ToggleButton
+                labelName="Show Password"
+                enabled={showPassword}
+                setEnabled={setShowPassword}
+              ></ToggleButton>
+              <Button
+                title="Log in"
+                type="submit"
+                buttonDisabled={isButtonDiabled}
+              ></Button>
+              {submitting && <FaSpinner className="animate-spin"></FaSpinner>}
             </div>
-            
+            <div className="flex flex-col items-center mt-16">
+              <CheckedBox></CheckedBox>
+              <div className="mt-6 font-semibold tracking-widest text-indigo-600">
+                <a href="#">Forgot Password?</a>
+              </div>
+            </div>
           </form>
-          
+          <p className="mt-24 text-sm">
+            © 2020 All Rights Reserved. CORK is a product of Designreset. Cookie
+            Preferences, Privacy, and Terms.
+          </p>
         </div>
       </div>
     </>

@@ -2,11 +2,14 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      primary: ["Nunito", "sans-serif"],
+    },
     extend: {
       maxWidth: {
         "480p": "30rem",
       },
-      
+
       padding: {
         y: "0.7143125rem",
         x: "2.857125rem",

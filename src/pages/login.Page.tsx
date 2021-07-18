@@ -44,9 +44,8 @@ const Login: React.FC<Props> = (props) => {
   
 
   let isButtonDiabled: boolean = true;
-  console.log(errors.email);
 
-  if (!(errors.email || errors.password) && (errors.email != undefined || errors.email != undefined)) {
+  if (!(errors.email || errors.password)) {
     isButtonDiabled = false;
   }
 
@@ -115,7 +114,7 @@ const Login: React.FC<Props> = (props) => {
               {isSubmitting && <FaSpinner className="animate-spin"></FaSpinner>}
             </div>
             <div className="flex flex-col items-center mt-16">
-              <CheckedBox></CheckedBox>
+              <CheckedBox labelTitle="Keep me logged in"></CheckedBox>
               <div className="mt-6 font-semibold tracking-widest text-indigo-600">
                 <a href="#">Forgot Password?</a>
               </div>

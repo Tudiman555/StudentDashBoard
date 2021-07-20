@@ -112,6 +112,7 @@ const Login: React.FC<Props> = (props) => {
                 title="Log in"
                 type="submit"
                 buttonDisabled={isButtonDiabled}
+                theme ="Primary"
               ></Button>
               {isSubmitting && <FaSpinner className="animate-spin"></FaSpinner>}
             </div>

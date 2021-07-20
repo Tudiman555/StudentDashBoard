@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes } from "react";
 import Input from "../components/input";
 import { HiOutlineUser, HiOutlineLockClosed,HiOutlineAtSymbol } from "react-icons/hi";
-import Button from "../components/button";
+import Button from "../components/Button/button";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useHistory } from "react-router-dom";

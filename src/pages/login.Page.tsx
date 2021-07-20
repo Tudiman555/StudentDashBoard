@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../components/input";
 import { HiOutlineUser, HiOutlineLockClosed } from "react-icons/hi";
-import Button from "../components/button";
+import Button from "../components/Button/button";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
@@ -41,10 +41,12 @@ const Login: React.FC<Props> = (props) => {
      const goToSignUp = () => {
        history.push("/signUp")
      }
-  
 
   let isButtonDiabled: boolean = true;
 
+  console.log(errors.email);
+  console.log(errors.password);
+  
   if (!(errors.email || errors.password)) {
     isButtonDiabled = false;
   }
@@ -99,14 +101,14 @@ const Login: React.FC<Props> = (props) => {
             >
               <HiOutlineLockClosed className="w-6 h-6 text-indigo-600" />
             </Input>
-            <div className="flex flex-wrap items-center justify-between">
+            <div className="flex-wrap items-center justify-between space-y-3 sm:flex">
               <ToggleButton
                 labelName="Show Password"
                 enabled={showPassword}
                 setEnabled={setShowPassword}
                 type="button"
               ></ToggleButton>
-              <Button
+              <Button 
                 title="Log in"
                 type="submit"
                 buttonDisabled={isButtonDiabled}

@@ -15,7 +15,7 @@ const ToggleButton: React.FC<Props> = (props) => {
   return (
     <>
       <Switch.Group as="div">
-        <div className="flex items-center">
+        <div className="flex flex-wrap items-center">
           <Switch.Label as="h2" className="mr-4" passive>
             {props.labelName}
           </Switch.Label>

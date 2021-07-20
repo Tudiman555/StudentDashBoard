@@ -2,7 +2,7 @@ import "../../index.css"
 import  Button  from './button';
 
 export default {
-  title: 'Components/Button',
+  title: 'Button',
   component: Button,
   argTypes: {
     buttonStyle: {

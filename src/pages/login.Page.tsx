@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../components/input";
+import Input from "../components/Input/input";
 import { HiOutlineUser, HiOutlineLockClosed } from "react-icons/hi";
 import Button from "../components/Button/button";
 import { useState } from "react";

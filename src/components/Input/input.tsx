@@ -4,7 +4,6 @@ import { InputHTMLAttributes } from "react";
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
    error? : string
    touched? : boolean
-   
 }
 
 const Input: React.FC<Props> = ({error,touched,children,...rest}) => {
@@ -19,7 +18,7 @@ const Input: React.FC<Props> = ({error,touched,children,...rest}) => {
         {children}
         <input
           {...rest}
-          className="w-full pb-2 pl-6 border-b outline-none"
+          className={"w-full pb-2 pl-6 border-b outline-none " + (error && touched? "border-red-600":"")}
         />
         </div>
         {touched && <div className="pl-6 text-xs text-red-600">{error}</div>}
@@ -29,5 +28,6 @@ const Input: React.FC<Props> = ({error,touched,children,...rest}) => {
   );
 };
 
-Input.defaultProps = {};
+Input.defaultProps = {
+};
 export default Input;

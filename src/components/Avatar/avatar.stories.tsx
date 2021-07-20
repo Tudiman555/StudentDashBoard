@@ -1,8 +1,6 @@
-import { boolean } from "yup/lib/locale";
 import "../../index.css";
 import Avatar from "./avatar";
 import Tushar from "../../images/Tushar.jpg";
-import { icons } from "react-icons";
 import Tom from "../../images/Tom.jpg";
 
 
@@ -26,6 +24,3 @@ export default {
 const Template = (args: any) => <Avatar {...args}></Avatar>;
 
 export const main: any = Template.bind({});
-
-main.args = {
-};

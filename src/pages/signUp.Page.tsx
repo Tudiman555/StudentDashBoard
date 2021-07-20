@@ -31,9 +31,9 @@ const SignUp: React.FC<Props> = (props) => {
       password: yupp.string().required().min(8),
     }),
 
-    onSubmit: (data, { setSubmitting }) => {
+    onSubmit: (data) => {
       setTimeout(() => {
-        console.log("data Submitted", values);
+        console.log("data Submitted", data);
         history.push("/dashboard");
       }, 5000);
     },

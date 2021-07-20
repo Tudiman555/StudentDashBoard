@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 import Input from "../components/input";
 import { HiOutlineUser, HiOutlineLockClosed } from "react-icons/hi";
 import Button from "../components/button";
@@ -30,9 +30,9 @@ const Login: React.FC<Props> = (props) => {
       password: yupp.string().required().min(8),
     }),
 
-    onSubmit: (data, { setSubmitting }) => {
+    onSubmit: (data) => {
       setTimeout(()=> {
-        console.log("data Submitted", values)
+        console.log("data Submitted", data)
         history.push("/dashboard")
       },5000)
     },

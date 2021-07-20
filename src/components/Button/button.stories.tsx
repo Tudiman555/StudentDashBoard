@@ -6,7 +6,7 @@ export default {
   component: Button,
   argTypes: {
     theme: {
-      options: ['primary', 'secondary'],
+      options: ['solid', 'outlined'],
       control: { type: 'radio' }
     },
     type: {
@@ -23,8 +23,8 @@ export const main:any = Template.bind({});
 main.args = {
     title:"Sign in",
     type : "submit",
-    theme : "primary",
-    buttonDisabled : false
+    theme : "Solid",
+    buttonDisabled : false,
 
 };
 

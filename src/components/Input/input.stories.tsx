@@ -4,9 +4,6 @@ import  Input  from './input';
 export default {
   title: 'Input',
   component: Input,
-  argTypes: {
-   
-  }
 }
 
 const Template = (args:any) => <Input {...args}></Input>;

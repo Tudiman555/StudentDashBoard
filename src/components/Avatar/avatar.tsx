@@ -13,11 +13,9 @@ const avatar : React.FC<Props> = ({onlineStatus,image}) => {
     
   return (
      <>
-        <div className="flex items-center justify-center ">
-        <div className="relative w-24 h-24">
+        <div className="relative w-24 h-24 transition-transform transform border-4 border-white rounded-full hover:-translate-y-2">
         <img src={image} alt="" className="w-full h-full rounded-full"/>
         {(displayStatus) && <div className={"absolute bottom-0 right-0 border-4 border-white rounded-full h-7 w-7" +" " + status}></div>}
-        </div>
         </div>
      </>
   );

@@ -23,7 +23,8 @@ const displayStackingAvatar: React.FC<Props> = ({
           if (i == maxUserToDisplay) {
             return (
               <div
-                className={"flex items-center absolute w-24 h-24 left-" + shift}
+                className="absolute flex items-center w-24 h-24"
+                style={{left:shift*4 + "px"}}
               >
                 <div className="w-20 h-8 text-lg text-justify text-indigo-600 transition-colors duration-100 transform rounded-full shadow-lg cursor-default bg-gray-50 hover:-translate-y-2">
                   +{avatars!.length - maxUserToDisplay}More
@@ -32,7 +33,7 @@ const displayStackingAvatar: React.FC<Props> = ({
             );
           }
           if (i < maxUserToDisplay)
-            return <div className={"absolute left-" + shift}>{e}</div>;
+            return <div className="absolute"  style={{left:shift*4 + "px"}}>{e}</div>;
         })}
       </div>
     </>
@@ -40,7 +41,7 @@ const displayStackingAvatar: React.FC<Props> = ({
 };
 
 displayStackingAvatar.defaultProps = {
-  maxUserToDisplay: 4,
+  maxUserToDisplay: 5,
   avatarUrls: [
     "https://pbs.twimg.com/profile_images/1060274716043345923/jVSWVi9g_400x400.jpg",
     "https://artfiles.alphacoders.com/125/125164.jpg",

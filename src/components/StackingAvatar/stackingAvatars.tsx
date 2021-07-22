@@ -12,7 +12,7 @@ const displayStackingAvatar: React.FC<Props> = ({
   avatarUrls,
 }) => {
   const avatars = avatarUrls?.map((address) => {
-    return <Avatar onlineStatus={undefined} image={address}></Avatar>;
+    return <Avatar onlineStatus={undefined} imageUrl={address} size={"Large"}></Avatar>;
   });
 
   return (

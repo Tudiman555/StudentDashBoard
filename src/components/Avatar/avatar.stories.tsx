@@ -4,7 +4,6 @@ import Tushar from "../../images/Tushar.jpg";
 import Tom from "../../images/Tom.jpg";
 
 
-const images = {Tushar,Tom}
 
 export default {
   title: "Avatar",
@@ -14,14 +13,13 @@ export default {
       options: [true, false, undefined],
       control: { type: "radio" },
     },
-    image: {
-        options:Object.keys(images),
-        mapping : images,
-        control: { type: "radio" },
-      },
+    
   },
 };
 
 const Template = (args: any) => <Avatar {...args}></Avatar>;
 
 export const main: any = Template.bind({});
+main.args = {
+  imageUrl: "https://pbs.twimg.com/profile_images/1060274716043345923/jVSWVi9g_400x400.jpg",
+}

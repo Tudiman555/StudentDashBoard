@@ -5,6 +5,7 @@ import Tom from "../../images/Tom.jpg";
 
 
 const images = {Tushar,Tom}
+
 export default {
   title: "Avatar",
   component: Avatar,

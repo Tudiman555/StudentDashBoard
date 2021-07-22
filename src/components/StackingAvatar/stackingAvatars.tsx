@@ -7,15 +7,13 @@ interface Props {
   avatarUrls?: string[];
 }
 
-
 const displayStackingAvatar: React.FC<Props> = ({
   maxUserToDisplay,
   avatarUrls,
 }) => {
-
-  const avatars  = avatarUrls?.map((address)=> {
-    return <Avatar onlineStatus={undefined} image={address} ></Avatar>
-  })
+  const avatars = avatarUrls?.map((address) => {
+    return <Avatar onlineStatus={undefined} image={address}></Avatar>;
+  });
 
   return (
     <>
@@ -48,7 +46,7 @@ displayStackingAvatar.defaultProps = {
     "https://artfiles.alphacoders.com/125/125164.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxN8dKD4P9QL3IpbuGH8tBPhEVbBySgo3w0w&usqp=CAU",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeqVJ4lmhiOnWI43pGSNDQFmXCUs0UDflVkA&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvYc1U9rWvVaaU4_oHTwW18Cxbe0eONgfP-Q&usqp=CAU"
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvYc1U9rWvVaaU4_oHTwW18Cxbe0eONgfP-Q&usqp=CAU",
   ],
 };
 export default displayStackingAvatar;

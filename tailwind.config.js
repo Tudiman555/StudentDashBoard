@@ -19,6 +19,9 @@ module.exports = {
       backgroundImage: (theme) => ({
         "hero-pattern": "url('/src/images/HeroImg.webp')",
       }),
+      transitionProperty : {
+          "width" : "width",
+      }
     },
   },
   variants: {

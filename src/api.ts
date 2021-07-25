@@ -51,6 +51,10 @@ export const login = (data: LoginRequest) => {
   });
 };
 
+export const Logout = () => {
+    localStorage.removeItem(LS_LOGIN_TOKEN)
+}
+
 export const fetchGroups = (data: GroupRequest) => {
   const url = BASE_URL + "/groups";
 

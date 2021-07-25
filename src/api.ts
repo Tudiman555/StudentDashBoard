@@ -40,7 +40,7 @@ interface GroupRequest {
 
 const BASE_URL = "https://api-dev.domecompass.com";
 
-const LS_LOGIN_TOKEN = "login_token";
+export const LS_LOGIN_TOKEN = "login_token";
 
 export const login = (data: LoginRequest) => {
   const url = BASE_URL + "/login";

@@ -9,6 +9,7 @@ import ToggleButton from "../components/toggleButton";
 import CheckedBox from "../components/checkedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
+import { login } from "../api";
 
 interface Props {}
 
@@ -31,10 +32,9 @@ const Login: React.FC<Props> = (props) => {
     }),
 
     onSubmit: (data) => {
-      setTimeout(()=> {
-        console.log("data Submitted", data)
-        history.push("/dashboard")
-      },5000)
+      login(data).then((user) => {
+        history.push("/dashboard");
+      });
     },
   });
   
@@ -135,6 +135,4 @@ const Login: React.FC<Props> = (props) => {
 
 Login.defaultProps = {};
 export default Login;
-function yup() {
-  throw new Error("Function not implemented.");
-}
+

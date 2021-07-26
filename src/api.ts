@@ -1,6 +1,7 @@
 import axios from "axios";
 
 axios.interceptors.request.use(function (config) {
+    
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
   if (!token) {
     return config;
@@ -38,6 +39,17 @@ interface GroupRequest {
   status: "all-groups" | "favourite" | "archieved";
 }
 
+ export interface GroupResponse {
+    data : GroupEntries[]
+ }
+
+ export interface GroupEntries {
+     name : string;
+     description : string;
+     group_image_url : string;
+ }
+
+
 const BASE_URL = "https://api-dev.domecompass.com";
 
 export const LS_LOGIN_TOKEN = "login_token";
@@ -57,9 +69,7 @@ export const Logout = () => {
 
 export const fetchGroups = (data: GroupRequest) => {
   const url = BASE_URL + "/groups";
-
-  axios
-    .get(url, { params: data })
-    .then((response) => console.log(response))
-    .catch((e) => console.error(e));
+  return axios
+    .get<GroupResponse>(url, { params: data })
+    .then((response) => { return response.data})
 };

@@ -15,7 +15,7 @@ const SideBar: React.FC<Props> = (props) => {
           title="Log out"
           onClick={() => {
             Logout()
-            history.push("/login")
+            window.location.href = "/login"
           }}
         ></Button>
       </div>

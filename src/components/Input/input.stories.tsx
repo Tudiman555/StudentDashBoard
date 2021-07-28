@@ -1,5 +1,5 @@
 import "../../index.css"
-import  Input  from './input';
+import  Input  from './Input';
 
 export default {
   title: 'Input',

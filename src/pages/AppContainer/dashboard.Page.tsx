@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { fetchGroups, GroupResponse } from "../../api";
+import { fetchGroups, GroupResponse } from "../../Api";
 import GroupCard from "../../components/GroupCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 interface Props {}

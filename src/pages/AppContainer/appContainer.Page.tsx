@@ -1,9 +1,9 @@
 import React from "react";
 import {Route, Switch } from "react-router-dom";
-import SideBar from "../../components/sideBar";
-import Dashboard from "./dashboard.Page";
-import Recordings from "./recording.Page";
-import Lecture from "./lecture.Page";
+import SideBar from "../../components/SideBar";
+import Dashboard from "./Dashboard.Page";
+import Recordings from "./Recording.Page";
+import Lecture from "./Lecture.Page";
 
 interface Props {
 }

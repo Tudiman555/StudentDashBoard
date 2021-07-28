@@ -1,5 +1,4 @@
-import React, { InputHTMLAttributes } from "react";
-import { ImgHTMLAttributes } from "react";
+import React, { ImgHTMLAttributes } from "react";
 
 interface Props extends ImgHTMLAttributes<HTMLImageElement>{
     title : string

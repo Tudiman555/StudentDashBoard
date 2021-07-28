@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import AuthHero from "../../components/authHero";
-import Login from "./login.Page";
-import SignUp from "./signUp.Page";
+import AuthHero from "../../components/AuthHero";
+import Login from "./Login.Page";
+import SignUp from "./SignUp.Page";
 
 
 interface Props {

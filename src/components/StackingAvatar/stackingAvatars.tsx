@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "../Avatar/avatar";
+import Avatar from "../Avatar/Avatar";
 import Tom from "../../images/Tom.jpg";
 
 interface Props {

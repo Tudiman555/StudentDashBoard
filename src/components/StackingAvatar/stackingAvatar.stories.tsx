@@ -1,6 +1,6 @@
 import "../../index.css";
-import avatar from "../Avatar/avatar";
-import StackingAvatar from "./stackingAvatars";
+import avatar from "../Avatar/Avatar";
+import StackingAvatar from "./StackingAvatars";
 
 
 export default {

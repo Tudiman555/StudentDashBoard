@@ -1,12 +1,12 @@
 import React, { InputHTMLAttributes } from "react";
-import Input from "../../components/Input/input";
+import Input from "../../components/Input/Input";
 import { HiOutlineUser, HiOutlineLockClosed,HiOutlineAtSymbol } from "react-icons/hi";
-import Button from "../../components/Button/button";
+import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
-import ToggleButton from "../../components/toggleButton";
-import CheckedBox from "../../components/checkedBox";
+import ToggleButton from "../../components/ToggleButton";
+import CheckedBox from "../../components/CheckedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
 

@@ -1,5 +1,5 @@
 import "../../index.css";
-import Avatar from "./avatar";
+import Avatar from "./Avatar";
 import Tushar from "../../images/Tushar.jpg";
 import Tom from "../../images/Tom.jpg";
 

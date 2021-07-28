@@ -1,4 +1,4 @@
-import ProgressBar from "./progressBar";
+import ProgressBar from "./ProgressBar";
 import "../../index.css";
 
 export default {

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import NotFound from "./pages/notFound.Page";
-import { LS_LOGIN_TOKEN } from "./api";
+import NotFound from "./pages/NotFound.Page";
+import { LS_LOGIN_TOKEN } from "./Api";
 import AppContainerLazy from "./pages/AppContainer/AppContainer.Lazy";
 import AuthLazy from "./pages/Auth/Auth.Lazy";
 

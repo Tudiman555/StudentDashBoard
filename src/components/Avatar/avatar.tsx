@@ -3,7 +3,7 @@ import { FaUnderline } from "react-icons/fa";
 import Tushar from "../../images/Tushar.jpg"
 
 interface Props {
-    imageUrl : string | undefined
+    imageUrl? : string | undefined
     onlineStatus? : boolean
     size : "Default" | "Small" | "Large"
     shape? : "Sqaure" | "Rounded"

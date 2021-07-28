@@ -9,8 +9,8 @@ const SideBar: React.FC<Props> = (props) => {
   const history = useHistory();
   return (
     <>
-      <div>
-        <div className="w-40 h-screen text-white bg-black">Side Bar</div>
+      <div className="w-2/12 h-screen">
+        <div className="h-screen text-white bg-black">Side Bar</div>
         <Button
           title="Log out"
           onClick={() => {

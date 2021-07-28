@@ -41,6 +41,10 @@ export interface User {
   middle_name: string;
   last_name: string;
   role: "staff" | "admin";
+  birth_date : string;
+  birth_month : string;
+  birth_year : string;
+  profile_pic_url : string;
 }
 
 interface GroupRequest {
@@ -73,8 +77,6 @@ export const login = (data: LoginRequest) => {
     return response.data.user;
   });
 };
-
-
 
 export const Logout = () => {
     localStorage.removeItem(LS_LOGIN_TOKEN)

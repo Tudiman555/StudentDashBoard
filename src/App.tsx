@@ -27,6 +27,7 @@ function App() {
             "/dashboard",
             "/recordings",
             "/batch/:batchNo/lecture/:lectureNumber",
+            "/profile",
           ]}
           exact
         >

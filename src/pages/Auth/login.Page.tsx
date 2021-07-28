@@ -18,7 +18,7 @@ interface Props {
 const Login: React.FC<Props> = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
-  const {
+  const { 
     handleBlur,
     handleChange,
     handleSubmit,
@@ -26,6 +26,7 @@ const Login: React.FC<Props> = (props) => {
     values,
     isSubmitting,
     errors,
+    isValid,
   } = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: yupp.object().shape({
@@ -111,7 +112,7 @@ const Login: React.FC<Props> = (props) => {
               <Button 
                 title="Log in"
                 type="submit"
-                buttonDisabled={isButtonDiabled}
+                disabled={isValid}
                 theme ="Primary"
               ></Button>
               {isSubmitting && <FaSpinner className="animate-spin"></FaSpinner>}

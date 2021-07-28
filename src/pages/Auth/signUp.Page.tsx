@@ -20,6 +20,7 @@ const SignUp: React.FC<Props> = (props) => {
     handleChange,
     handleSubmit,
     touched,
+    isValid,
     values,
     isSubmitting,
     errors,
@@ -123,7 +124,7 @@ const SignUp: React.FC<Props> = (props) => {
               <Button
                 title="Get Started!"
                 type="submit"
-                buttonDisabled={isButtonDiabled}
+                disabled={isValid}
               ></Button>
               {isSubmitting && <FaSpinner className="animate-spin"></FaSpinner>}
             </div>

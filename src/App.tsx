@@ -2,9 +2,8 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./pages/notFound.Page";
 import { LS_LOGIN_TOKEN } from "./api";
-import AppContainerPageLazy from "./pages/AppContainer/AppContainer.lazy";
- 
-const AuthPageLazy = lazy(() => import("./pages/Auth/auth.Page"));
+import AppContainerLazy from "./pages/AppContainer/AppContainer.Lazy";
+import AuthLazy from "./pages/Auth/Auth.Lazy";
 
 function App() {
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
@@ -17,7 +16,7 @@ function App() {
         </Route>
         <Route path={["/login", "/signUp", "/"]} exact>
           <Suspense fallback={<div>Loading Auth Page</div>}>
-            <AuthPageLazy /> 
+            <AuthLazy /> 
           </Suspense>
         </Route>
         <Route
@@ -29,7 +28,7 @@ function App() {
           exact
         >
           <Suspense fallback={<div>Loading App container Page</div>}>
-            <AppContainerPageLazy />
+            <AppContainerLazy />
           </Suspense>
         </Route>
         <Route>

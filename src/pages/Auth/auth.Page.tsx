@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import AuthHero from "../components/authHero";
+import AuthHero from "../../components/authHero";
 import Login from "./login.Page";
 import SignUp from "./signUp.Page";
 

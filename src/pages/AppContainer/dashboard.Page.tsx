@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { fetchGroups, GroupResponse } from "../api";
-import GroupCard from "../components/GroupCard";
-import SearchBar from "../components/SearchBar/SearchBar";
+import { fetchGroups, GroupResponse } from "../../api";
+import GroupCard from "../../components/GroupCard";
+import SearchBar from "../../components/SearchBar/SearchBar";
 interface Props {}
 
 const Dashboard: React.FC<Props> = (props) => {

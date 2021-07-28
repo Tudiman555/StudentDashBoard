@@ -1,15 +1,15 @@
 import React from "react";
-import Input from "../components/Input/input";
+import Input from "../../components/Input/input";
 import { HiOutlineUser, HiOutlineLockClosed } from "react-icons/hi";
-import Button from "../components/Button/button";
+import Button from "../../components/Button/button";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
-import ToggleButton from "../components/toggleButton";
-import CheckedBox from "../components/checkedBox";
+import ToggleButton from "../../components/toggleButton";
+import CheckedBox from "../../components/checkedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
-import { login } from "../api";
+import { login } from "../../api";
 
 interface Props {}
 

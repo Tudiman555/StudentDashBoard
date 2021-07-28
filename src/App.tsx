@@ -1,10 +1,10 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./pages/notFound.Page";
 import { LS_LOGIN_TOKEN } from "./api";
 
-const AppContainerPageLazy = lazy(() => import("./pages/appContainer.Page"));
-const AuthPageLazy = lazy(() => import("./pages/auth.Page"));
+const AppContainerPageLazy = lazy(() => import("./pages/AppContainer/appContainer.Page"));
+const AuthPageLazy = lazy(() => import("./pages/Auth/auth.Page"));
 
 function App() {
   const token = localStorage.getItem(LS_LOGIN_TOKEN);

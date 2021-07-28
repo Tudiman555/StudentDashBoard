@@ -1,6 +1,7 @@
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-axios.interceptors.request.use(function (config) {
+axios.interceptors.request.use((config) => {
     
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
   if (!token) {
@@ -9,6 +10,16 @@ axios.interceptors.request.use(function (config) {
 
   return { ...config, headers: { ...config.headers, Authorization: token } };
 });
+
+axios.interceptors.response.use(undefined,(error) => {
+  if(error.response.data.code === 9101) {
+    console.log("error Agya");
+    localStorage.removeItem(LS_LOGIN_TOKEN);
+    window.location.href = "/login";
+  }
+  return Promise.reject(error);
+} );
+
 
 interface LoginRequest {
   email: string;
@@ -24,7 +35,7 @@ interface LoginResponse {
   user: User;
 }
 
-interface User {
+export interface User {
   id: number;
   first_name: string;
   middle_name: string;
@@ -62,6 +73,8 @@ export const login = (data: LoginRequest) => {
     return response.data.user;
   });
 };
+
+
 
 export const Logout = () => {
     localStorage.removeItem(LS_LOGIN_TOKEN)

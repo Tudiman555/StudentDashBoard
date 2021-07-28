@@ -1,6 +1,6 @@
 import React from "react";
 import Input from "../../components/Input/Input";
-import { HiOutlineUser, HiOutlineLockClosed } from "react-icons/hi";
+import { HiOutlineUser, HiOutlineLockClosed, HiOutlineLogin } from "react-icons/hi";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
@@ -9,9 +9,11 @@ import ToggleButton from "../../components/ToggleButton";
 import CheckedBox from "../../components/CheckedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
-import { login } from "../../Api";
+import { login, User } from "../../Api";
 
-interface Props {}
+interface Props {
+  onLogin : (user : User) => void
+}
 
 const Login: React.FC<Props> = (props) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,6 +35,7 @@ const Login: React.FC<Props> = (props) => {
 
     onSubmit: (data) => {
       login(data).then((user) => {
+        props.onLogin(user);
         history.push("/dashboard");
       });
     },
@@ -43,9 +46,6 @@ const Login: React.FC<Props> = (props) => {
      }
 
   let isButtonDiabled: boolean = true;
-
-  console.log(errors.email);
-  console.log(errors.password);
   
   if (!(errors.email || errors.password)) {
     isButtonDiabled = false;

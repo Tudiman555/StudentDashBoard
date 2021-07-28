@@ -26,7 +26,7 @@ export const main:any = Template.bind({});
 
 main.args = {
     title:"Sign in",
-    buttonDisabled : false,
+    disabled : false,
 
 };
 

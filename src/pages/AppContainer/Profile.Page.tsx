@@ -56,7 +56,7 @@ const Profile: React.FC<Props> = (props) => {
   return (
     <>
       <div className="relative flex flex-col w-10/12 px-4 mt-4">
-        <ProfileSectionCard SectionTitle="General Information">
+        <ProfileSectionCard sectionTitle="General Information">
           <form>
             <div className="flex flex-col md:flex-row">
               <div className="flex-grow w-4/12">
@@ -244,6 +244,7 @@ const Profile: React.FC<Props> = (props) => {
             </div>
           </form>
         </ProfileSectionCard>
+        <ProfileSectionCard sectionTitle="Education"></ProfileSectionCard>
         <div className="px-4">
           <div className="fixed bottom-0 right-0 flex items-center justify-between w-10/12 h-20 px-4 bg-gray-900 rounded-lg">
             <Button

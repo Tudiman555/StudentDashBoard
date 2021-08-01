@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
-import { User } from "../../Api";
+import React, { useState } from "react";
+
 import ProfileInput from "../../components/Input/ProfileInput";
 import ProfileSectionCard from "../../components/ProfileSectionCard";
 import * as yupp from "yup";
 import Button from "../../components/Button/Button";
 import Avatar from "../../components/Avatar/Avatar";
+import { User } from "../../modals/User";
 
 interface Props {
   data: User;
@@ -272,9 +273,3 @@ const Profile: React.FC<Props> = (props) => {
 
 Profile.defaultProps = {};
 export default Profile;
-function useFormic(): {} {
-  throw new Error("Function not implemented.");
-}
-function yup() {
-  throw new Error("Function not implemented.");
-}

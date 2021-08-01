@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { fetchGroups, GroupResponse } from "../../Api";
+import { fetchGroups, GroupResponse } from "../../api/groups";
+
 import GroupCard from "../../components/GroupCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 interface Props {}
@@ -20,12 +21,12 @@ const Dashboard: React.FC<Props> = (props) => {
   useEffect(() => {
     setRequesting(true);
     fetchGroups({ status: "all-groups", query }).then((data) => {
-      setGroupData(data);
+      setGroupData(data!);
       setRequesting(false);
     });
   }, [query]);
 
-  
+   
 
   return (
     <>

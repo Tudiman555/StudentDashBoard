@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Logout } from "../Api";
+import { Logout } from "../api/auth";
+
 import Button from "./Button/Button";
 
 interface Props {}

@@ -1,6 +1,6 @@
 import React from "react";
 import Input from "../../components/Input/Input";
-import { HiOutlineUser, HiOutlineLockClosed, HiOutlineLogin } from "react-icons/hi";
+import { HiOutlineUser, HiOutlineLockClosed} from "react-icons/hi";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
@@ -9,13 +9,14 @@ import ToggleButton from "../../components/ToggleButton";
 import CheckedBox from "../../components/CheckedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
-import { login, User } from "../../Api";
+import { User } from "../../modals/User";
+import { Login } from "../../api/auth";
 
 interface Props {
   onLogin : (user : User) => void
 }
 
-const Login: React.FC<Props> = (props) => {
+const LoginPage: React.FC<Props> = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
   const { 
@@ -26,7 +27,6 @@ const Login: React.FC<Props> = (props) => {
     values,
     isSubmitting,
     errors,
-    isValid,
   } = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: yupp.object().shape({
@@ -35,7 +35,7 @@ const Login: React.FC<Props> = (props) => {
     }),
 
     onSubmit: (data) => {
-      login(data).then((user) => {
+      Login(data).then((user) => {
         props.onLogin(user);
         history.push("/dashboard");
       });
@@ -112,7 +112,7 @@ const Login: React.FC<Props> = (props) => {
               <Button 
                 title="Log in"
                 type="submit"
-                disabled={isValid}
+                disabled={isButtonDiabled}
                 theme ="Primary"
               ></Button>
               {isSubmitting && <FaSpinner className="animate-spin"></FaSpinner>}
@@ -134,6 +134,6 @@ const Login: React.FC<Props> = (props) => {
   );
 };
 
-Login.defaultProps = {};
-export default Login;
+LoginPage.defaultProps = {};
+export default LoginPage;
 

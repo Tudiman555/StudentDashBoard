@@ -5,7 +5,7 @@ import Dashboard from "./Dashboard.Page";
 import Recordings from "./Recording.Page";
 import Lecture from "./Lecture.Page";
 import Profile from "./Profile.Page";
-import { User } from "../../Api";
+
 
 interface Props {
 }

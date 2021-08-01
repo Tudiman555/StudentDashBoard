@@ -5,21 +5,38 @@ import AppContainerLazy from "./pages/AppContainer/AppContainer.Lazy";
 import AuthLazy from "./pages/Auth/Auth.Lazy";
 import { User } from "./modals/User";
 import { LS_AUTH_TOKEN } from "./api/base";
+import { useEffect } from "react";
+import { me } from "./api/auth";
+import { setUser, user } from "./pages/AppContext";
 
 function App() {
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
-  const [user,setUser] = useState<User>();
+  useEffect(() => {
+    me().then((u) => {
+      setUser(u);
+    });
+  }, []);
+
+  console.log("Component Rerendering");
+
+  if (!user && token) {
+    return <div>Loading</div>;
+  }
 
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          {token ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
+          {user ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
         </Route>
         <Route path={["/login", "/signUp", "/"]} exact>
           <Suspense fallback={<div>Loading Auth Page</div>}>
-          { token ? <Redirect to="/dashboard" /> : <AuthLazy onLogin={setUser}/> } 
+            {user ? (
+              <Redirect to="/dashboard" />
+            ) : (
+              <AuthLazy onLogin={setUser} />
+            )}
           </Suspense>
         </Route>
         <Route
@@ -32,7 +49,7 @@ function App() {
           exact
         >
           <Suspense fallback={<div>Loading App container Page</div>}>
-            {token ?<AppContainerLazy /> : <Redirect to="/login"></Redirect>}
+            {user ? <AppContainerLazy /> : <Redirect to="/login"></Redirect>}
           </Suspense>
         </Route>
         <Route>

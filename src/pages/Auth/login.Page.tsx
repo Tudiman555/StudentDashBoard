@@ -9,11 +9,10 @@ import ToggleButton from "../../components/ToggleButton";
 import CheckedBox from "../../components/CheckedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
-import { User } from "../../modals/User";
 import { Login } from "../../api/auth";
+import { setUser } from "../AppContext";
 
 interface Props {
-  onLogin : (user : User) => void
 }
 
 const LoginPage: React.FC<Props> = (props) => {
@@ -36,7 +35,7 @@ const LoginPage: React.FC<Props> = (props) => {
 
     onSubmit: (data) => {
       Login(data).then((user) => {
-        props.onLogin(user);
+        setUser(user);
         history.push("/dashboard");
       });
     },

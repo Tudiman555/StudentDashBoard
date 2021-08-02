@@ -1,19 +1,18 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { Logout } from "../api/auth";
-import { user } from "../pages/AppContext";
+import { useAppSelector } from "../Store";
 
 import Button from "./Button/Button";
 
 interface Props {}
 
 const SideBar: React.FC<Props> = (props) => {
-  const history = useHistory();
+  const user = useAppSelector((state)=> state.me );
   return (
     <>
       <div className="w-2/12 h-screen">
         <div className="h-screen text-white bg-black">Side Bar</div>
-        <div className="text-red-600">{user.first_name}</div>
+        <div className="text-red-600">{user!.first_name}</div>
         <Button
           title="Log out"
           onClick={() => {

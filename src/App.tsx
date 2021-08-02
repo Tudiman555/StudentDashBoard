@@ -1,24 +1,31 @@
-import { Suspense, useState } from "react";
+import { FC, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./pages/NotFound.Page";
 import AppContainerLazy from "./pages/AppContainer/AppContainer.Lazy";
 import AuthLazy from "./pages/Auth/Auth.Lazy";
-import { User } from "./modals/User";
 import { LS_AUTH_TOKEN } from "./api/base";
 import { useEffect } from "react";
 import { me } from "./api/auth";
-import { setUser, user } from "./pages/AppContext";
+import { useDispatch, useSelector } from "react-redux";
+import { meFetchAction, useAppSelector } from "./Store";
 
-function App() {
+interface Props {}
+
+const App:FC<Props> = () => {
+  const user = useAppSelector((state) => state.me);
+
+  const  dispatch = useDispatch();
+
+
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
   useEffect(() => {
+  
+    if(!token) return;
     me().then((u) => {
-      setUser(u);
+      dispatch(meFetchAction(u))
     });
   }, []);
-
-  console.log("Component Rerendering");
 
   if (!user && token) {
     return <div>Loading</div>;
@@ -35,7 +42,7 @@ function App() {
             {user ? (
               <Redirect to="/dashboard" />
             ) : (
-              <AuthLazy onLogin={setUser} />
+              <AuthLazy/>
             )}
           </Suspense>
         </Route>

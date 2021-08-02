@@ -36,6 +36,7 @@ interface MeResponse {
 export const me = () => {
   const url = BASE_URL + "/me";
   return axios.get<MeResponse>(url).then((response) => {
+    console.log(response);
     return response.data.data;
   });
 };

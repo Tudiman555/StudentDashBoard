@@ -8,4 +8,4 @@ export interface User {
     birth_month : string;
     birth_year : string;
     profile_pic_url : string;
-  }
+}

@@ -10,13 +10,14 @@ import CheckedBox from "../../components/CheckedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
 import { Login } from "../../api/auth";
-import { setUser } from "../AppContext";
+import { useDispatch } from "react-redux";
 
 interface Props {
 }
 
 const LoginPage: React.FC<Props> = (props) => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
   const history = useHistory();
   const { 
     handleBlur,
@@ -35,7 +36,7 @@ const LoginPage: React.FC<Props> = (props) => {
 
     onSubmit: (data) => {
       Login(data).then((user) => {
-        setUser(user);
+        dispatch({type : "me/login", payload : user})
         history.push("/dashboard");
       });
     },

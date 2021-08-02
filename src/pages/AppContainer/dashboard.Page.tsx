@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchGroups, GroupResponse } from "../../api/groups";
 
 import GroupCard from "../../components/GroupCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { groupFetchAction, useAppSelector } from "../../Store";
 interface Props {}
 
 const Dashboard: React.FC<Props> = (props) => {
-  const [groupData, setGroupData] = useState<GroupResponse>();
+
+  const groupData = useAppSelector((state) => state.groups);
+  const dispatcher = useDispatch();
   const [query, setQuery] = useState("");
   const [requesting , setRequesting] = useState(false);
 
@@ -21,7 +25,7 @@ const Dashboard: React.FC<Props> = (props) => {
   useEffect(() => {
     setRequesting(true);
     fetchGroups({ status: "all-groups", query }).then((data) => {
-      setGroupData(data!);
+      dispatcher(groupFetchAction(data!));
       setRequesting(false);
     });
   }, [query]);
@@ -40,7 +44,7 @@ const Dashboard: React.FC<Props> = (props) => {
         </div>
         
         <div>
-          {groupData?.data.map((value,key) => {
+          {groupData?.map((value,key) => {
             return (
               <div className={" text-white hover:opacity-90 rounded-xl " + (key%2 == 0 ? "bg-gray-600" : "bg-gray-400")}>
                 <GroupCard

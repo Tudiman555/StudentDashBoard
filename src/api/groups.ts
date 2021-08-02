@@ -17,7 +17,7 @@ interface GroupRequest {
     const url = BASE_URL + "/groups";
     return axios
       .get<GroupResponse>(url, { params: data })
-      .then((response) => { return response.data})
+      .then((response) => { return response.data.data})
       .catch((e) => console.error(e));
   };
      

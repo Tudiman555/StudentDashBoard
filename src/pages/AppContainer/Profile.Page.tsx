@@ -1,53 +1,35 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
-
+import React from "react";
 import ProfileInput from "../../components/Input/ProfileInput";
 import ProfileSectionCard from "../../components/ProfileSectionCard";
 import * as yupp from "yup";
 import Button from "../../components/Button/Button";
 import Avatar from "../../components/Avatar/Avatar";
-import { User } from "../../modals/User";
-
-interface Props {
-  data: User;
-}
-
-let user: User = {
-  id: 0,
-  first_name: "Tushar",
-  middle_name: "Kumar",
-  last_name: "Agarwal",
-  role: "staff",
-  birth_date: "22",
-  birth_month: "11",
-  birth_year: "2000",
-  profile_pic_url: "",
-};
+import { useAppSelector } from "../../Store";
+import { memo } from "react";
+interface Props {}
 
 const Profile: React.FC<Props> = (props) => {
-  const [userDetails, setUserDetails] = useState({date_of_birth : user.birth_date +"-"+ user.birth_month +"-"+ user.birth_year,...user});
+  const userDetails = useAppSelector((state) => state.me);
 
-  console.log(userDetails);
+  console.log("Component Rerendering");
   const resetDetails = () => {
-    setValues(userDetails);
+    setValues({ ...userDetails });
   };
 
   const {
     handleBlur,
     handleChange,
-    handleSubmit,
-    isValid,
     touched,
     values,
     setValues,
-    isSubmitting,
     errors,
   } = useFormik({
-    initialValues: {...userDetails},
+    initialValues: { ...userDetails },
     validationSchema: yupp.object().shape({
       first_name: yupp.string().required("This Field is Required").min(3),
       last_name: yupp.string().required().min(3),
-      date_of_birth : yupp.date(),
+      date_of_birth: yupp.date(),
       role: yupp
         .string()
         .matches(/staff|admin/, "Role can either be 'staff' or 'admin '"),
@@ -90,7 +72,7 @@ const Profile: React.FC<Props> = (props) => {
                     touched={touched.last_name}
                   />
                 </div>
-                <div className="flex space-x-3">
+                <div className="flex flex-wrap md:space-x-3 md:flex-nowrap ">
                   <ProfileInput
                     type="text"
                     name="role"
@@ -105,18 +87,18 @@ const Profile: React.FC<Props> = (props) => {
                   />
                   <div className="w-full">
                     <label
-                      htmlFor={values.date_of_birth}
+                      htmlFor={values.birth_date}
                       className="block mb-2 text-sm text-gray-500"
                     >
                       Date Of Birth
                     </label>
                     <div className="flex space-x-1">
                       <select
-                        id={values.date_of_birth}
+                        id={values.birth_date}
                         name="birth_date"
                         className={
                           "p-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none " +
-                          (errors.date_of_birth && touched.date_of_birth
+                          (errors.birth_date && touched.birth_date
                             ? "border-red-600 focus:border-red-600 mb-2"
                             : "mb-6 focus:border-indigo-600 ")
                         }
@@ -158,11 +140,11 @@ const Profile: React.FC<Props> = (props) => {
                         <option>31</option>
                       </select>
                       <select
-                        id={values.date_of_birth}
+                        id={values.birth_date}
                         name={"birth_month"}
                         className={
                           "p-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none " +
-                          (errors.date_of_birth && touched.date_of_birth
+                          (errors.birth_date && touched.birth_date
                             ? "border-red-600 focus:border-red-600 mb-2"
                             : "mb-6 focus:border-indigo-600 ")
                         }
@@ -185,11 +167,11 @@ const Profile: React.FC<Props> = (props) => {
                         <option>Dec</option>
                       </select>
                       <select
-                        id={values.date_of_birth}
+                        id={values.birth_date}
                         name={"birth_year"}
                         className={
                           "p-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none " +
-                          (errors.date_of_birth && touched.date_of_birth
+                          (errors.birth_date && touched.birth_date
                             ? "border-red-600 focus:border-red-600 mb-2"
                             : "mb-6 focus:border-indigo-600 ")
                         }
@@ -259,17 +241,22 @@ const Profile: React.FC<Props> = (props) => {
               title="Save Changes"
               theme="Success"
               type="button"
-              onClick={() => {
-                setUserDetails(values);
-              }}
-              disabled={!isValid || values === userDetails}
+              onClick={() => {}}
+              disabled={true}
             />
           </div>
-        </div>
+        </div >
+          <div className = "relative">
+          <div className="z-10 w-20 h-20 bg-black">
+            Nav
+            <div className="relative z-30 w-32 h-32 bg-white "></div>
+          </div>
+          <div className="z-10 w-24 h-24 bg-black ">Title</div>
+          </div>
       </div>
     </>
   );
 };
 
 Profile.defaultProps = {};
-export default Profile;
+export default memo(Profile);

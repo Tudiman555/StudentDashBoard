@@ -26,15 +26,7 @@ const AppContainer : React.FC<Props> = (props) => {
            <Lecture></Lecture>
         </Route>
         <Route path="/profile">
-           <Profile data={ {id : 0,
-  first_name : "Tushar",
-  middle_name : "",
-  last_name: "Agarwal",
-  role: "staff",
-  birth_date : "22",
-  birth_month : "11",
-  birth_year : "2000",
-  profile_pic_url : ""}}></Profile>
+           <Profile></Profile>
         </Route>
         </Switch>
         </div>

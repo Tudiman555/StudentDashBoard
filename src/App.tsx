@@ -6,24 +6,33 @@ import AuthLazy from "./pages/Auth/Auth.Lazy";
 import { LS_AUTH_TOKEN } from "./api/base";
 import { useEffect } from "react";
 import { me } from "./api/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { meFetchAction, useAppSelector } from "./Store";
 
 interface Props {}
 
-const App:FC<Props> = () => {
-  const user = useAppSelector((state) => state.me);
+const App: FC<Props> = () => {
+  const user = useAppSelector(
+    (state) => state.me
+  ); 
+  
+  /* redux will only render this component if and only 
+  if this state for me changes it will not render the component 
+  even if other states are changed to achieve this redux requires 2 conditions to work properly
 
-  const  dispatch = useDispatch();
+  
+  (i) Never Mutate an old object.
+  (ii) Only create a new object when data is actually changed.
+  */
 
+  const dispatch = useDispatch();
 
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
   useEffect(() => {
-  
-    if(!token) return;
+    if (!token) return;
     me().then((u) => {
-      dispatch(meFetchAction(u))
+      dispatch(meFetchAction(u));
     });
   }, []);
 
@@ -39,11 +48,7 @@ const App:FC<Props> = () => {
         </Route>
         <Route path={["/login", "/signUp", "/"]} exact>
           <Suspense fallback={<div>Loading Auth Page</div>}>
-            {user ? (
-              <Redirect to="/dashboard" />
-            ) : (
-              <AuthLazy/>
-            )}
+            {user ? <Redirect to="/dashboard" /> : <AuthLazy />}
           </Suspense>
         </Route>
         <Route
@@ -65,6 +70,6 @@ const App:FC<Props> = () => {
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

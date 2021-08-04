@@ -7,7 +7,7 @@ import Button from "./Button/Button";
 interface Props {}
 
 const SideBar: React.FC<Props> = (props) => {
-  const user = useAppSelector((state)=> state.me );
+  const user = useAppSelector((state)=> state.users.byId[state.auth.id!]);
   return (
     <>
       <div className="w-2/12 h-screen">

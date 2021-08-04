@@ -10,7 +10,7 @@ import { memo } from "react";
 interface Props {}
 
 const Profile: React.FC<Props> = (props) => {
-  const userDetails = useAppSelector((state) => state.me);
+  const userDetails = useAppSelector((state) => state.users.byId[state.auth.id!]);
 
   console.log("Component Rerendering");
   const resetDetails = () => {

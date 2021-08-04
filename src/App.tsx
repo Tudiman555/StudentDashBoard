@@ -7,14 +7,16 @@ import { LS_AUTH_TOKEN } from "./api/base";
 import { useEffect } from "react";
 import { me } from "./api/auth";
 import { useDispatch} from "react-redux";
-import { meFetchAction, useAppSelector } from "./Store";
+import { useAppSelector } from "./Store";
+import { meFetchAction } from "./actions/auth";
+
 
 interface Props {}
 
 const App: FC<Props> = () => {
   const user = useAppSelector(
-    (state) => state.me
-  ); 
+    (state) => state.auth.id &&  state.users.byId[state.auth.id]
+  );  
   
   /* redux will only render this component if and only 
   if this state for me changes it will not render the component 

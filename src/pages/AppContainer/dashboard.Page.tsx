@@ -3,17 +3,19 @@ import { useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchGroups, GroupResponse } from "../../api/groups";
+import { groupFetchAction, groupQueryAction, GROUPS_QUERY } from "../../actions/groups";
+import { fetchGroups} from "../../api/groups";
 
 import GroupCard from "../../components/GroupCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { groupFetchAction, GROUP_QUERY, useAppSelector } from "../../Store";
+import {useAppSelector } from "../../Store";
 interface Props {}
 
 const Dashboard: React.FC<Props> = (props) => {
   const groupData = useAppSelector((state) => {
-    const groupIds = state.groupQueryMap[state.groupQuery] || [];
-    const group = groupIds.map((id)=> state.groups[id]);
+    const groupIds = state.groups.queryMap[state.groups.query] || [];
+    console.log(state.groups.queryMap)
+    const group = groupIds.map((id)=> state.groups.byId[id]);
     return group;
     
   }); /* redux will only render this component if and only 
@@ -21,13 +23,13 @@ const Dashboard: React.FC<Props> = (props) => {
                                                                 even if state.me is changed */
 
   const dispatcher = useDispatch();
-  const query = useAppSelector((state) => state.groupQuery);
+  const query = useAppSelector((state) => state.groups.query);
   
   const [requesting, setRequesting] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const changedValue = event.target.value;
-    dispatcher({type : GROUP_QUERY , payload : changedValue})
+    dispatcher(groupQueryAction(changedValue))
   };
   
   useEffect(() => {

@@ -29,6 +29,7 @@ const LoginPage: React.FC<Props> = (props) => {
     errors,
   } = useFormik({
     initialValues: { email: "", password: "" },
+    
     validationSchema: yupp.object().shape({
       email: yupp.string().required().email(),
       password: yupp.string().required().min(8),

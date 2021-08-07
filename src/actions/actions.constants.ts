@@ -1,0 +1,12 @@
+
+//users
+
+export const ME_FETCH = "me/fetch"
+export const ME_LOGIN = "me/login"
+
+//groups
+
+export const GROUPS_QUERY = "group/query";
+export const GROUPS_QUERY_RESULTS = "group/query_results";
+
+ 

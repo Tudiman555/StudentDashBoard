@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { groupFetchAction, groupQueryAction, GROUPS_QUERY } from "../../actions/groups";
+import { groupFetchAction, groupQueryAction} from "../../actions/groups";
 import { fetchGroups} from "../../api/groups";
 
 import GroupCard from "../../components/GroupCard";

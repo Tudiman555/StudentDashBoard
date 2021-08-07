@@ -10,7 +10,7 @@ const reducer = combineReducers({
   auth: authReducer,
 });
 
-type AppState = ReturnType<typeof reducer>;
+export type AppState = ReturnType<typeof reducer>;
 
 export const store = createStore(
   reducer,

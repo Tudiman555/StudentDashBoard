@@ -1,7 +1,7 @@
 import { Group } from "../modals/Group";
+import { GROUPS_QUERY, GROUPS_QUERY_RESULTS } from "./actions.constants";
 
-export const GROUPS_QUERY = "group/query";
-export const GROUPS_QUERY_RESULTS = "group/query_results";
+
 
 
 export const groupFetchAction = (groups: Group[], query : string) => ({

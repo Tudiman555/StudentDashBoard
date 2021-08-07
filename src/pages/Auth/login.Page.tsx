@@ -60,9 +60,9 @@ const LoginPage: React.FC<Props> = (props) => {
         <div className="flex flex-col justify-center h-screen mx-auto max-w-480p px-x py-y">
           <h1 className="pb-2 text-4xl">
             Log In to{" "}
-            <a className="font-semibold text-indigo-600" href="#">
+            <button className="font-semibold text-indigo-600">
               CODE YOGI
-            </a>
+            </button>
           </h1>
           <p className="mb-12 text-sm font-semibold">
             New Here?{" "}

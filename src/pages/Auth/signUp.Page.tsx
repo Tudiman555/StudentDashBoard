@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from "react";
 import Input from "../../components/Input/Input";
 import { HiOutlineUser, HiOutlineLockClosed,HiOutlineAtSymbol } from "react-icons/hi";
 import Button from "../../components/Button/Button";
@@ -20,7 +21,6 @@ const SignUp: React.FC<Props> = (props) => {
     handleChange,
     handleSubmit,
     touched,
-    isValid,
     values,
     isSubmitting,
     errors,
@@ -124,7 +124,7 @@ const SignUp: React.FC<Props> = (props) => {
               <Button
                 title="Get Started!"
                 type="submit"
-                disabled={isValid}
+                disabled={isButtonDiabled}
               ></Button>
               {isSubmitting && <FaSpinner className="animate-spin"></FaSpinner>}
             </div>

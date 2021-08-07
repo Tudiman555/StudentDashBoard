@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import Input from "../../components/Input/Input";
 import { HiOutlineUser, HiOutlineLockClosed} from "react-icons/hi";

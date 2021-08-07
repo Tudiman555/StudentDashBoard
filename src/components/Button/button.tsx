@@ -29,6 +29,7 @@ const Button: React.FC<Props> = ({
 
   const style =
     buttonStyle === "Solid"
+      // eslint-disable-next-line no-useless-concat
       ? "bg-" + classTheme + " " + "text-white"
       : "border-" +
         classTheme +

@@ -53,12 +53,12 @@ const Dashboard: React.FC<Props> = (props) => {
           </SearchBar>
         </div>
         <div>
-          {groupData?.map((value, key) => {
+          {groupData?.map((value,key) => {
             return (
-              <div
+              <div key={value.id}
                 className={
                   " text-white hover:opacity-90 rounded-xl " +
-                  (key % 2 == 0 ? "bg-gray-600" : "bg-gray-400")
+                  (key % 2 === 0 ? "bg-gray-600" : "bg-gray-400")
                 }
               >
                 <GroupCard

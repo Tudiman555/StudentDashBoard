@@ -1,6 +1,4 @@
 import React from "react";
-import { FaUnderline } from "react-icons/fa";
-import Tushar from "../../images/Tushar.jpg"
 
 interface Props {
     imageUrl? : string | undefined
@@ -24,7 +22,7 @@ const avatar : React.FC<Props> = ({onlineStatus,imageUrl,size,shape}) => {
      <>
         <div className={ shaped +" relative transition-transform transform border-4 border-white hover:-translate-y-2 " + sizes[size]}>
         <img src={imageUrl} alt="" className={"object-cover object-top w-full h-full " + shaped}/>
-        {(displayStatus) && <div className={"absolute bottom-0 right-0 border-4 border-white rounded-full h-1/4 w-1/4 " +" " + status}></div>}
+        {(displayStatus) && <div className={"absolute bottom-0 right-0 border-4 border-white rounded-full h-1/4 w-1/4 " + status}></div>}
         </div>
      </>
   );

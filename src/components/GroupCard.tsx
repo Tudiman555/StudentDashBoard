@@ -1,8 +1,8 @@
 import React, { ImgHTMLAttributes } from "react";
 
 interface Props extends ImgHTMLAttributes<HTMLImageElement>{
-    title : string
-    description : string 
+    title? : string
+    description? : string 
 }
 
 const GroupCard : React.FC<Props> = ({src,description,title}) => {

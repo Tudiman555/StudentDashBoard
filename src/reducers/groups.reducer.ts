@@ -1,19 +1,21 @@
 import { Reducer } from "redux";
-import { GROUPS_QUERY, GROUPS_QUERY_RESULTS } from "../actions/actions.constants";
+import { GROUPS_QUERY, GROUPS_QUERY_RESULTS, GROUP_SELECTED_ID } from "../actions/actions.constants";
 import { Group } from "../modals/Group";
+import { addMany, EntityState, getIds } from "./entity.reducer";
 
-export interface GroupState {
-  byId: {
-    [id: number]: Group;
-  };
+export interface GroupState extends EntityState<Group>{
   query: string;
   queryMap: { [query: string]: number[] };
+  SelectedId ? : number
+  queryLoading : { [query : string] : boolean}
 }
 
 const initialState = {
   byId: {},
   query: "",
   queryMap: {},
+  SelectedId : 0,
+  queryLoading : {}
 };
 
 export const groupReducer: Reducer<GroupState> = (
@@ -22,21 +24,22 @@ export const groupReducer: Reducer<GroupState> = (
 ) => {
   switch (action.type) {
     case GROUPS_QUERY:
-      return { ...state, query: action.payload };
+      const {query , loading } = action.payload
+      return { ...state, query: query ,queryLoading : {...state.queryLoading, [query] : loading} };
     case GROUPS_QUERY_RESULTS:
       const groups: Group[] = action.payload.groups;
-      const groupIds = groups.map((gr) => gr.id);
-      const groupMap = groups.reduce((prev, group) => {
-        return { ...prev, [group.id]: group };
-      }, {});
+      const groupIds = getIds(groups);
+      const newState = addMany(state,groups) as GroupState
       return {
-        ...state,
-        byId: { ...state.byId, ...groupMap },
+        ...newState,
         queryMap: {
-          ...state.queryMap,
+          ...newState.queryMap,
           [action.payload.query]: groupIds,
         },
+        queryLoading : {...state.queryLoading , [action.payload.query] : false},
       };
+    case GROUP_SELECTED_ID :
+      return {...state,SelectedId: action.payload}
     default:
       return state;
   }

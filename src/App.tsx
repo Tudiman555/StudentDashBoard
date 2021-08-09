@@ -5,19 +5,16 @@ import AppContainerLazy from "./pages/AppContainer/AppContainer.Lazy";
 import AuthLazy from "./pages/Auth/Auth.Lazy";
 import { LS_AUTH_TOKEN } from "./api/base";
 import { useEffect } from "react";
-import { me } from "./api/auth";
-import { useDispatch} from "react-redux";
-import { useAppSelector } from "./Store";
-import { meFetchAction } from "./actions/auth";
+import { me } from "./middlewares/auth.middleware";
 
+import { useAppSelector } from "./Store";
+import { meSelector } from "./selectors/auth.selectors";
 
 interface Props {}
 
 const App: FC<Props> = () => {
-  const user = useAppSelector(
-    (state) => state.auth.id &&  state.users.byId[state.auth.id]
-  );  
-  
+  const user = useAppSelector(meSelector);
+
   /* redux will only render this component if and only 
   if this state for me changes it will not render the component 
   even if other states are changed to achieve this redux requires 2 conditions to work properly
@@ -27,15 +24,11 @@ const App: FC<Props> = () => {
   (ii) Only create a new object when data is actually changed.
   */
 
-  const dispatch = useDispatch();
-
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
   useEffect(() => {
     if (!token) return;
-    me().then((u) => {
-      dispatch(meFetchAction(u));
-    });
+    me();
   }, []);
 
   if (!user && token) {
@@ -59,6 +52,8 @@ const App: FC<Props> = () => {
             "/recordings",
             "/batch/:batchNo/lecture/:lectureNumber",
             "/profile",
+            "/groups",
+            "/groups/:id",
           ]}
           exact
         >

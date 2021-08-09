@@ -1,9 +1,9 @@
 import { Reducer } from "redux";
-import { ME_FETCH, ME_LOGIN } from "../actions/auth";
+import { ME_FETCH, ME_LOGIN } from "../actions/actions.constants";
 import { User } from "../modals/User";
+import { EntityState } from "./entity.reducer";
 
-export interface UserState {
-    byId : {[id : number] : User}
+export interface UserState extends EntityState<User>{
     
 }
 

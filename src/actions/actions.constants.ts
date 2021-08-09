@@ -8,5 +8,6 @@ export const ME_LOGIN = "me/login"
 
 export const GROUPS_QUERY = "group/query";
 export const GROUPS_QUERY_RESULTS = "group/query_results";
+export const GROUP_SELECTED_ID = "/group/selected/id";
 
  

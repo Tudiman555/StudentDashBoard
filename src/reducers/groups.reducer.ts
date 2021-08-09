@@ -15,7 +15,7 @@ const initialState = {
   query: "",
   queryMap: {},
   SelectedId : 0,
-  queryLoading : {}
+  queryLoading : { "" : false}
 };
 
 export const groupReducer: Reducer<GroupState> = (
@@ -24,8 +24,8 @@ export const groupReducer: Reducer<GroupState> = (
 ) => {
   switch (action.type) {
     case GROUPS_QUERY:
-      const {query , loading } = action.payload
-      return { ...state, query: query ,queryLoading : {...state.queryLoading, [query] : loading} };
+      const query = action.payload
+      return { ...state, query: query ,queryLoading : {...state.queryLoading, [query] : true} };
     case GROUPS_QUERY_RESULTS:
       const groups: Group[] = action.payload.groups;
       const groupIds = getIds(groups);

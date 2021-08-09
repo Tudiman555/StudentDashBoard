@@ -22,6 +22,6 @@ export const groupsSelector = createSelector([groupQueryMapSelector, groupIdsSel
 
 export const groupSelectorbyId = (state : AppState) => state.groups.SelectedId;
 
-const groupLoadingQueryMapSelector = createSelector([groupStateSelector],(groupState) => groupState.queryLoading);
+export const groupLoadingQueryMapSelector = createSelector([groupStateSelector],(groupState) => groupState.queryLoading);
 
 export const groupLoadingSelector = createSelector([groupLoadingQueryMapSelector,groupQuerySelector] ,(loadingMap , query) =>{ return loadingMap[query] })

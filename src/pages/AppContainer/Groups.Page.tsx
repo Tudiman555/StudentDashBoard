@@ -19,7 +19,6 @@ const groupData = useAppSelector(groupsSelector); /* redux will only render this
   
   const loading = useAppSelector(groupLoadingSelector);
 
-
   console.log(store.getState().groups.queryLoading);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const changedValue = event.target.value;
@@ -44,7 +43,7 @@ const groupData = useAppSelector(groupsSelector); /* redux will only render this
                   " text-white hover:opacity-90 rounded-md " +
                   (key % 2 === 0 ? "bg-gray-600" : "bg-gray-400")
                 }
-              ><Link to={`groups/${value.id}`} className="text-black  hover:underline">
+              ><Link to={`groups/${value.id}`} className="text-black hover:underline">
               <span >{value.name}</span>
             </Link>
                 
@@ -52,6 +51,7 @@ const groupData = useAppSelector(groupsSelector); /* redux will only render this
             );
           })}
         </div>
+        {!loading && groupData.length === 0 && <div>Sorry No data Found Please try seaching again with a different keyWord</div>}
         </div>
      </>
   );

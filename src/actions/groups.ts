@@ -11,9 +11,9 @@ export const groupFetchAction = (groups: Group[], query : string) => ({
     payload: {groups : groups, query :query },
   });
 
-export const groupQueryAction = ( query : string ,loading : boolean ) => ({
+export const groupQueryAction = ( query : string ) => ({
     type : GROUPS_QUERY,
-    payload : {query,loading}
+    payload : query
 })
 
 export const groupSelectedIdAction = ( id : number) => ({type : GROUP_SELECTED_ID,payload : id})

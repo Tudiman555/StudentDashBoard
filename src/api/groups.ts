@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { CancelToken } from "axios";
 import { Group } from "../modals/Group";
 import { BASE_URL } from "./base";
 
@@ -16,10 +16,10 @@ import { BASE_URL } from "./base";
      data : Group
    }
   
-   export const fetchGroups = (data: GroupRequest) => {
+   export const fetchGroups = (data: GroupRequest, token? : CancelToken) => {
     const url = BASE_URL + "/groups";
     return axios
-      .get<GroupResponse>(url, { params: data })
+      .get<GroupResponse>(url, { params: data , cancelToken : token })
       .then((response) => response.data.data)
   };
 

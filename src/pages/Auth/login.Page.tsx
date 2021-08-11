@@ -11,7 +11,8 @@ import CheckedBox from "../../components/CheckedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
 import { Login } from "../../api/auth";
-import { authActions } from "../../actions/auth";
+import { meLoginAction } from "../../actions/auth";
+import { store } from "../../Store";
 
 interface Props {
 }
@@ -37,7 +38,7 @@ const LoginPage: React.FC<Props> = (props) => {
 
     onSubmit: (data) => {
       Login(data).then((user) => {
-        authActions.login(user);
+        store.dispatch(meLoginAction(user));
         history.push("/dashboard");
       });
     },

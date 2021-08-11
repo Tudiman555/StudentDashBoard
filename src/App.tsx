@@ -5,10 +5,11 @@ import AppContainerLazy from "./pages/AppContainer/AppContainer.Lazy";
 import AuthLazy from "./pages/Auth/Auth.Lazy";
 import { LS_AUTH_TOKEN } from "./api/base";
 import { useEffect } from "react";
-import { me } from "./middlewares/auth.middleware";
 
-import { useAppSelector } from "./Store";
+import { store, useAppSelector } from "./Store";
 import { meSelector } from "./selectors/auth.selectors";
+import { me } from "./api/auth";
+import { meFetchAction } from "./actions/auth";
 
 interface Props {}
 
@@ -28,7 +29,7 @@ const App: FC<Props> = () => {
 
   useEffect(() => {
     if (!token) return;
-    me();
+    me().then(u => store.dispatch(meFetchAction(u)));
   }, []);
 
   if (!user && token) {

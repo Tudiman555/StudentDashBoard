@@ -1,10 +1,10 @@
 import React, { memo} from "react";
 import { FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { fetchGroups } from "../../middlewares/groups.middleware";
+import { groupQueryChangedAction } from "../../actions/groups";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { groupsLoadingQuerySelector, groupQuerySelector, groupsSelector } from "../../selectors/groups.selectors";
-import {useAppSelector } from "../../Store";
+import { store, useAppSelector } from "../../Store";
 
 interface Props {
 }
@@ -16,12 +16,11 @@ const groupData = useAppSelector(groupsSelector); /* redux will only render this
                                                                 even if state.me is changed */
 
   const query = useAppSelector(groupQuerySelector);
-  
   const loading = useAppSelector(groupsLoadingQuerySelector);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const changedValue = event.target.value;
-    fetchGroups({ query : changedValue , status : "all-groups" })
+    store.dispatch<any>(groupQueryChangedAction(changedValue))
     
   };
 

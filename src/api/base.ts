@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import { CANCEL } from "redux-saga";
 
 export const BASE_URL = "https://api-dev.domecompass.com";
 
@@ -23,3 +24,10 @@ axios.interceptors.response.use(undefined, (error) => {
   }
   return Promise.reject(error);
 });
+
+export const get =<T>(url : string, config? : AxiosRequestConfig) => {
+  const source = axios.CancelToken.source();
+  const response = axios.get<T>(url , { ...config, cancelToken : source.token});
+  response[CANCEL] = source.cancel;
+  return response;
+}

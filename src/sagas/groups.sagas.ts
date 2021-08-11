@@ -1,4 +1,4 @@
-import { takeLatest , call,put} from "@redux-saga/core/effects"
+import { debounce , call,put} from "@redux-saga/core/effects"
 import { AnyAction } from "redux"
 import { GROUPS_QUERY_CHANGED, } from "../actions/actions.constants"
 import { groupQueryResultsAction } from "../actions/groups"
@@ -10,5 +10,5 @@ export function* fetchGroups(action : AnyAction) : Generator<any> {
 }
 
 export function* watchGroupQueryChanged() {
-    yield takeLatest(GROUPS_QUERY_CHANGED,fetchGroups)
+    yield debounce(1000,GROUPS_QUERY_CHANGED,fetchGroups);
 } 

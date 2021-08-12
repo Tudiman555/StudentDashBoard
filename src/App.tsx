@@ -1,6 +1,6 @@
 import { FC, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import NotFound from "./pages/NotFound.Page";
+import NotFoundPage from "./pages/NotFound.Page";
 import AppContainerLazy from "./pages/AppContainer/AppContainer.Lazy";
 import AuthLazy from "./pages/Auth/Auth.Lazy";
 import { LS_AUTH_TOKEN } from "./api/base";
@@ -63,7 +63,7 @@ const App: FC<Props> = () => {
           </Suspense>
         </Route>
         <Route>
-          <NotFound></NotFound>
+          <NotFoundPage></NotFoundPage>
         </Route>
       </Switch>
     </BrowserRouter>

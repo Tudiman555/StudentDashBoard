@@ -3,7 +3,7 @@ import React from "react";
 interface Props {
 }
 
-const NotFound : React.FC<Props> = (props) => {
+const NotFoundPage : React.FC<Props> = (props) => {
   return (
      <>
         <div className="bg-red-800">Page Not Found</div>
@@ -11,6 +11,6 @@ const NotFound : React.FC<Props> = (props) => {
   );
 };
 
-NotFound.defaultProps = {
+NotFoundPage.defaultProps = {
 }
-export default NotFound;
+export default NotFoundPage;

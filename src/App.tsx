@@ -8,8 +8,7 @@ import { useEffect } from "react";
 
 import { store, useAppSelector } from "./Store";
 import { meSelector } from "./selectors/auth.selectors";
-import { me } from "./api/auth";
-import { meFetchAction } from "./actions/auth";
+import { meRequestedAction } from "./actions/auth";
 
 interface Props {}
 
@@ -28,8 +27,9 @@ const App: FC<Props> = () => {
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
   useEffect(() => {
-    if (!token) return;
-    me().then(u => store.dispatch(meFetchAction(u)));
+    if (!token) return;    
+
+    store.dispatch(meRequestedAction());
   }, []);
 
   if (!user && token) {

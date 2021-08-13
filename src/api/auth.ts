@@ -19,10 +19,7 @@ interface LoginResponse {
 export const Login = (data: LoginRequest) => {
   const url = BASE_URL + "/login";
 
-  return axios.post<LoginResponse>(url, data).then((response) => {
-    localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
-    return response.data.user;
-  });
+  return axios.post<LoginResponse>(url, data)
 };
 
 export const Logout = () => {
@@ -35,7 +32,14 @@ interface MeResponse {
 
 export const me = () => {
   const url = BASE_URL + "/me";
-  return axios.get<MeResponse>(url).then((response) => {
+  return axios.get<MeResponse>(url)
+};
+
+export const updateMe = (data : any) => {
+  const url = BASE_URL + "/me";
+  return axios.put(url,{...data}).then((response) => {
+    console.log("This is the response " + response);
     return response.data.data;
   });
-};
+  
+}

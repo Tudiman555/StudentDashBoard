@@ -10,7 +10,6 @@ import ToggleButton from "../../components/ToggleButton";
 import CheckedBox from "../../components/CheckedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
-import { Login } from "../../api/auth";
 import { meLoginAction } from "../../actions/auth";
 import { store } from "../../Store";
 
@@ -37,10 +36,7 @@ const LoginPage: React.FC<Props> = (props) => {
     }),
 
     onSubmit: (data) => {
-      Login(data).then((user) => {
-        store.dispatch(meLoginAction(user));
-        history.push("/dashboard");
-      });
+        store.dispatch(meLoginAction(data));
     },
   });
   

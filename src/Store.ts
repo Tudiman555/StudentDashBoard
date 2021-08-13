@@ -4,8 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { authReducer } from "./reducers/auth.reducer";
 import { groupReducer } from "./reducers/groups.reducer";
 import { userReducer } from "./reducers/users.reducer";
-import { sagaMiddleware } from "./sagas";
-import { watchGroupQueryChanged } from "./sagas/groups.sagas";
+import { rootSaga, sagaMiddleware } from "./sagas";
 
 const reducer = combineReducers({
   users: userReducer,
@@ -20,5 +19,5 @@ export const store = createStore(
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(watchGroupQueryChanged);
+sagaMiddleware.run(rootSaga);
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;

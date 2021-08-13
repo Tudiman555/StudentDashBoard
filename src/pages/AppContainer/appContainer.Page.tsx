@@ -7,6 +7,7 @@ import Lecture from "./Lecture.Page";
 import Profile from "./Profile.Page";
 import GroupsPage from "./Groups.Page";
 import GroupIdPage from "./GroupId.Page";
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
 
 
 interface Props {
@@ -15,6 +16,9 @@ interface Props {
 const AppContainer : React.FC<Props> = (props) => {
   return (
      <>
+        <div>
+        <NavigationBar></NavigationBar>
+        </div>
         <div className="flex w-full bg-gray-300">
         <SideBar></SideBar>
         <Switch >

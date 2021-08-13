@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from "react";
+import { HiSearch } from "react-icons/hi";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement>{
     placeholder? : string 
@@ -7,8 +8,9 @@ interface Props extends InputHTMLAttributes<HTMLInputElement>{
 const SearchBar : React.FC<Props> = ({placeholder,children,...rest}) => {
   return (
      <>
-        <div className="flex items-center">
-        <input className="text-white bg-black border w-80 focus:outline-none" type="text" placeholder={placeholder} {...rest}/>
+        <div className="flex items-center bg-gray-800 rounded-lg h-9 ">
+          <HiSearch className="w-5 h-5 text-gray-200"></HiSearch>
+        <input className="text-white bg-gray-800 focus:outline-none" type="text" placeholder={placeholder} {...rest}/>
         {children}
         </div>
      </>

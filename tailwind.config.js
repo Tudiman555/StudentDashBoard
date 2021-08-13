@@ -5,7 +5,11 @@ module.exports = {
     fontFamily: {
       primary: ["Nunito", "sans-serif"],
     },
+    
     extend: {
+      colors : {
+        nav : "#0e1726",
+      },
       maxWidth: {
         "480p": "30rem",
       },

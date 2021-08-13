@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { ME_FETCH, ME_LOGIN } from "../actions/actions.constants";
+import { ME_RECEIVED} from "../actions/actions.constants";
 import { User } from "../modals/User";
 import { EntityState } from "./entity.reducer";
 
@@ -13,8 +13,7 @@ const initialState : UserState  = {
 
 export const userReducer: Reducer<UserState> = (state = initialState , action) => {
     switch (action.type) {
-        case ME_FETCH :
-        case ME_LOGIN : 
+        case ME_RECEIVED :
             const user : User = action.payload;
             return {...state, byId : {...state.byId,[user.id]: user}}
         default :

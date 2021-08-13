@@ -1,5 +1,5 @@
 import { Reducer } from "redux"
-import { ME_FETCH, ME_LOGIN } from "../actions/actions.constants"
+import { ME_LOGIN, ME_RECEIVED, ME_REQUESTED } from "../actions/actions.constants"
 
  export interface AuthState {
      id? : number;
@@ -9,8 +9,10 @@ import { ME_FETCH, ME_LOGIN } from "../actions/actions.constants"
 
  export const authReducer : Reducer<AuthState> = (state=initialState , action) => {
      switch (action.type) {
-         case ME_LOGIN:
-         case ME_FETCH:
+         case ME_LOGIN :
+         case ME_REQUESTED :
+             return state;
+         case ME_RECEIVED:
              const userId = action.payload.id as number
              return {...state, id : userId}
          default :

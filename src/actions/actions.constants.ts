@@ -1,7 +1,13 @@
 
+export interface Action<T> {
+    type? : string,
+    payload? : T
+}
+
 //users
 
-export const ME_FETCH = "me/fetch"
+export const ME_REQUESTED = "me/requested"
+export const ME_RECEIVED = "me/received"
 export const ME_LOGIN = "me/login"
 
 //groups

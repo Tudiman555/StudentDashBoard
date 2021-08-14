@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { store, useAppSelector } from "./Store";
 import { meSelector } from "./selectors/auth.selectors";
 import { meRequestedAction } from "./actions/auth";
+import LoaderPage from "./pages/LoaderPage";
 
 interface Props {}
 
@@ -33,7 +34,7 @@ const App: FC<Props> = () => {
   }, []);
 
   if (!user && token) {
-    return <div>Loading</div>;
+    return <LoaderPage />;
   }
 
   return (
@@ -43,7 +44,7 @@ const App: FC<Props> = () => {
           {user ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
         </Route>
         <Route path={["/login", "/signUp", "/"]} exact>
-          <Suspense fallback={<div>Loading Auth Page</div>}>
+          <Suspense fallback={<LoaderPage />}>
             {user ? <Redirect to="/dashboard" /> : <AuthLazy />}
           </Suspense>
         </Route>
@@ -58,7 +59,7 @@ const App: FC<Props> = () => {
           ]}
           exact
         >
-          <Suspense fallback={<div>Loading App container Page</div>}>
+          <Suspense fallback={<LoaderPage />}>
             {user ? <AppContainerLazy /> : <Redirect to="/login"></Redirect>}
           </Suspense>
         </Route>

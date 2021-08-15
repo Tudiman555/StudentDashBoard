@@ -6,7 +6,7 @@ import Recordings from "./Recording.Page";
 import Lecture from "./Lecture.Page";
 import Profile from "./Profile.Page";
 import GroupsPage from "./Groups.Page";
-import GroupIdPage from "./GroupId.Page";
+import GroupDetailsPage from "./GroupDetails.Page";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 
 
@@ -38,7 +38,7 @@ const AppContainer : React.FC<Props> = (props) => {
            <GroupsPage></GroupsPage>
         </Route>
         <Route path="/groups/:groupId">
-           <GroupIdPage></GroupIdPage>
+           <GroupDetailsPage></GroupDetailsPage>
         </Route>
         </Switch>
         </div>

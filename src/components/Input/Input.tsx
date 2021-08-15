@@ -10,7 +10,7 @@ const Input: React.FC<Props> = ({error,touched,children,...rest}) => {
 
   return (
     <>
-      <div className="pt-11p pb-25p">
+      <div className={"pt-11p " + (error && touched? "pb-9p":"pb-25p")}>
          <div className="flex">
         <label htmlFor={rest.id} className="sr-only">
            {rest.name}

@@ -1,5 +1,4 @@
 import { createSelector } from "reselect";
-import { AppState } from "../Store";
 import { groupStateSelector } from "./app.selectors";
 
 export const groupQuerySelector = createSelector(
@@ -12,16 +11,20 @@ export const groupQueryMapSelector = createSelector(
   (groupState) => groupState.queryMap
 );
 
-export const groupIdsSelector = createSelector([groupStateSelector],(groupState) => groupState.byId);
+export const groupByIdSelector = createSelector([groupStateSelector],(groupState) => groupState.byId);
 
-export const groupsSelector = createSelector([groupQueryMapSelector, groupIdsSelector,groupQuerySelector], (queryMap,byId,query) => {
+export const groupsSelector = createSelector([groupQueryMapSelector, groupByIdSelector,groupQuerySelector], (queryMap,byId,query) => {
     const groupIds = queryMap[query] || [];
     const group = groupIds.map((id)=> byId[id]);
     return group;
 });
 
-export const groupSelectorbyId = (state : AppState) => state.groups.SelectedId;
+
+
+export const groupSelectedIdSelector = createSelector([groupStateSelector],(groupState) => groupState.selectedId);
 
 export const groupsLoadingQuerySelector = createSelector([groupStateSelector],(groupState) => groupState.loading);
 
-//export const groupLoadingSelector = createSelector([groupLoadingQueryMapSelector,groupQuerySelector] ,(loadingMap , query) =>{ return loadingMap[query] })
+
+export const selectedGroupSelector = createSelector([groupSelectedIdSelector,groupByIdSelector],(id,byId)=> id && byId[id])
+

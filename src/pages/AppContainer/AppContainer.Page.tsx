@@ -37,7 +37,7 @@ const AppContainer : React.FC<Props> = (props) => {
         <Route path="/groups" exact>
            <GroupsPage></GroupsPage>
         </Route>
-        <Route path="/groups/:id">
+        <Route path="/groups/:groupId">
            <GroupIdPage></GroupIdPage>
         </Route>
         </Switch>

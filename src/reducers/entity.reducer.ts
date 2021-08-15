@@ -4,11 +4,23 @@ export interface EntityState<T extends Entity = Entity> {
   byId: {
     [id: number]: T;
   };
+  selectedId? : number;
 }
+
+export const select = (state : EntityState, id : number) => {
+  return {...state , selectedId : id}
+}
+
 
 export const getIds = (entities: Entity[]) => {
   return entities.map((e) => e.id);
 };
+
+
+export const addOne = (state: EntityState<Entity>, entity: Entity) => {
+  return {...state, byId : {...state.byId, [entity.id] : entity} };
+};
+
 
 export const addMany = (
   state: EntityState,
@@ -26,6 +38,4 @@ export const addMany = (
   };
 };
 
-export const addOne = (state: EntityState, entity: Entity) => {
-    return {...state, [entity.id] : entity};
-};
+

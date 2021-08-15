@@ -1,6 +1,6 @@
 
 import { Group } from "../modals/Group";
-import { GROUPS_QUERY_CHANGED, GROUPS_QUERY_RESULTS, GROUP_SELECTED_ID } from "./actions.constants";
+import { GROUPS_QUERY_CHANGED, GROUPS_QUERY_RESULTS, GROUP_FETCH_ONE, GROUP_FETCH_ONE_RESULTS} from "./actions.constants";
 
 
 
@@ -15,5 +15,17 @@ export const groupQueryChangedAction = ( query : string ) => ({
     payload : query
 })
 
-export const groupSelectedIdAction = ( id : number) => ({type : GROUP_SELECTED_ID,payload : id})
+
+export const groupfetchOne = ( id : number ) => ({
+  type : GROUP_FETCH_ONE,
+  payload : id 
+})
+
+export const groupfetchOneResults = (group : Group) => ({
+  type : GROUP_FETCH_ONE_RESULTS,
+  payload : group
+}) 
+
+
+
 

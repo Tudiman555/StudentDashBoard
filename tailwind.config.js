@@ -19,6 +19,7 @@ module.exports = {
         x: "2.857125rem",
         "11p": "0.6875rem",
         "25p": "1.5625rem",
+        "9p" : "0.5625rem",
       },
       backgroundImage: (theme) => ({
         "hero-pattern": "url('/src/images/HeroImg.webp')",

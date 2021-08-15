@@ -21,8 +21,8 @@ import { BASE_URL, get } from "./base";
     return get<GroupResponse>(url, { params: data , cancelToken : token });
   };
 
-  export const fetchGroupDetails = (id?: number ) => {
+  export const fetchGroupDetails = (id : number ) => {
     const url = BASE_URL + "/groups/" + id;
-    return axios.get<GroupByIdResponse>(url).then(response => {return response.data.data}).catch(e => console.log(e))
+    return axios.get<GroupResponse>(url);
   }
      

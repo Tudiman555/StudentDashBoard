@@ -8,9 +8,9 @@ interface Props extends InputHTMLAttributes<HTMLInputElement>{
 const SearchBar : React.FC<Props> = ({placeholder,children,...rest}) => {
   return (
      <>
-        <div className="flex items-center bg-gray-800 rounded-lg h-9 ">
-          <HiSearch className="w-5 h-5 text-gray-200"></HiSearch>
-        <input className="text-white bg-gray-800 focus:outline-none" type="text" placeholder={placeholder} {...rest}/>
+        <div className="relative flex items-center bg-gray-800 rounded-lg h-9">
+         <HiSearch className="absolute w-5 h-5 text-gray-300 left-1"></HiSearch> 
+        <input className="w-full pl-8 text-white bg-gray-800 focus:outline-none focus:placeholder-opacity-25" type="text" placeholder={placeholder} {...rest}/>
         {children}
         </div>
      </>

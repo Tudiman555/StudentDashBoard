@@ -56,6 +56,8 @@ const App: FC<Props> = () => {
             "/profile",
             "/groups",
             "/groups/:groupId",
+            "/people",
+            "/people/:personId"
           ]}
           exact
         >
@@ -72,3 +74,4 @@ const App: FC<Props> = () => {
 };
 
 export default App;
+

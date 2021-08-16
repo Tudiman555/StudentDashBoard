@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
-import { Link, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import { groupfetchOne } from "../../actions/groups";
 import GroupCard from "../../components/GroupCard";
+import LinkButton from "../../components/LinkButton";
 import {
   queryIdsSelector,
   selectedErrorSelector,
@@ -25,9 +26,10 @@ const GroupIdPage: React.FC<Props> = (props) => {
   const error = useAppSelector(selectedErrorSelector);
   const loading = useAppSelector(selectedLoadingSelector);
   const groupIds = useAppSelector(queryIdsSelector);
+  const noOfgroups = groupIds.length;
 
   const currentIndex = useMemo(() => {
-    if (groupIds.length === 0 || groupIds.length === 1) {
+    if (noOfgroups === 0 || noOfgroups === 1) {
       return -1;
     }
     let index = 0;
@@ -45,7 +47,7 @@ const GroupIdPage: React.FC<Props> = (props) => {
 
   return (
     <>
-      {loading && <div>Loading Group Details .....</div>}
+      {loading && <div className="absolute right-0 text-sm font-bold">Loading Group Details .....</div>}
       {group && (
         <div className="w-full p-5 space-y-3 ">
           <GroupCard
@@ -55,32 +57,30 @@ const GroupIdPage: React.FC<Props> = (props) => {
           ></GroupCard>
           {currentIndex !== -1 && (
             <div className="flex justify-between ">
-              <Link
-                to={
+              <LinkButton
+              title="Previous"
+                directTo={
                   "/groups/" +
                   groupIds[currentIndex === 0 ? currentIndex : currentIndex - 1]
                 }
-                className={" bg-green-400 py-2 px-4 rounded-lg text-white font-bold text-center" + " "+(currentIndex === 0 ? "cursor-not-allowed" : "")}
+                disabled = {currentIndex === 0}
               >
                 Previous
-              </Link>
-              <Link
-                to={
+              </LinkButton>
+              <LinkButton
+              title="Next"
+                directTo={
                   "/groups/" +
                   groupIds[
-                    currentIndex === groupIds.length - 1
+                    currentIndex === noOfgroups - 1
                       ? currentIndex
                       : currentIndex + 1
                   ]
                 }
-                className={"bg-green-400 py-2 px-4 rounded-lg text-white font-bold text-center" + " " +
-                  (currentIndex === groupIds.length - 1
-                    ? "cursor-not-allowed"
-                    : "")
-                }
+                disabled={currentIndex === noOfgroups-1}
               >
                 Next
-              </Link>
+              </LinkButton>
             </div>
           )}
         </div>

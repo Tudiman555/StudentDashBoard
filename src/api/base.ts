@@ -22,6 +22,10 @@ axios.interceptors.response.use(undefined, (error) => {
     localStorage.removeItem(LS_AUTH_TOKEN);
     window.location.href = "/login";
   }
+  if(error.response?.data?.code === 8102 ) {
+    console.log("running")
+    window.location.href = "/error";
+  }
   return Promise.reject(error);
 });
 

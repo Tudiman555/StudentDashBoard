@@ -39,7 +39,7 @@ const Profile: React.FC<Props> = (props) => {
     }),
     onSubmit: (data) => {
       const  url = "https://api-dev.domecompass.com/me"
-      const obj = { "first_name" : data.first_name , "last_name" : data.last_name}
+      const obj = { "first_name" : data.first_name , "last_name" : data.last_name , "profile_pic_url": ""}
       console.log(data)
       console.log(obj)
       axios.put(url,{...obj})
@@ -118,13 +118,6 @@ const Profile: React.FC<Props> = (props) => {
         </ProfileSectionCard>
         <ProfileSectionCard sectionTitle="Education"></ProfileSectionCard>
 
-        <div className="relative">
-          <div className="z-10 w-20 h-20 bg-black">
-            Nav
-            <div className="relative z-30 w-32 h-32 bg-white "></div>
-          </div>
-          <div className="z-10 w-24 h-24 bg-black ">Title</div>
-        </div>
       </div>
     </>
   );

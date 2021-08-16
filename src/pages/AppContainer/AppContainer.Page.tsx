@@ -8,6 +8,8 @@ import Profile from "./Profile.Page";
 import GroupsPage from "./Groups.Page";
 import GroupDetailsPage from "./GroupDetails.Page";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import UsersPage from "./Users.Page";
+import UserDetailsPage from "./UserDetails.Page";
 
 
 interface Props {
@@ -39,6 +41,12 @@ const AppContainer : React.FC<Props> = (props) => {
         </Route>
         <Route path="/groups/:groupId">
            <GroupDetailsPage></GroupDetailsPage>
+        </Route>
+        <Route path="/people" exact>
+           <UsersPage></UsersPage>
+        </Route>
+        <Route path="/people/:personId">
+           <UserDetailsPage></UserDetailsPage>
         </Route>
         </Switch>
         </div>

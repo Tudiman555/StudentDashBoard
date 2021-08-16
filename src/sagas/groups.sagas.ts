@@ -1,7 +1,7 @@
 import { takeLatest , call,put,delay,takeEvery} from "@redux-saga/core/effects"
 import { AnyAction } from "redux"
 import { GROUPS_QUERY_CHANGED, GROUP_FETCH_ONE} from "../actions/actions.constants"
-import { groupfetchOneResults, groupQueryResultsAction } from "../actions/groups"
+import { groupfetchOneError, groupfetchOneResults, groupQueryResultsAction } from "../actions/groups"
 import  {fetchGroupDetails, fetchGroups as fetchGroupAPI}  from "../api/groups"
 
 function* fetchGroups(action : AnyAction) : Generator<any> {
@@ -15,9 +15,16 @@ export function* watchGroupQueryChanged() {
 }
 
 function* fetchOne(action : AnyAction) : Generator<any> {
-    const groupRes : any = yield call(fetchGroupDetails, action.payload) 
 
+    try {
+    const groupRes : any = yield call(fetchGroupDetails, action.payload) 
     yield put(groupfetchOneResults(groupRes.data.data));
+    }
+    catch (e) {
+        const error = e.response.data?.message || "Some error occured"
+        yield put(groupfetchOneError(action.payload , error));
+    }
+    
 }
 
 export function* watchGroupId() {

@@ -5,9 +5,11 @@ import {useParams } from "react-router-dom";
 import { groupfetchOne } from "../../actions/groups";
 import GroupCard from "../../components/GroupCard";
 import LinkButton from "../../components/LinkButton";
+import UserCard from "../../components/UserCard";
 import {
   queryIdsSelector,
   selectedErrorSelector,
+  selectedGroupCreatorSelector,
   selectedGroupSelector,
   selectedLoadingSelector,
 } from "../../selectors/groups.selectors";
@@ -27,6 +29,7 @@ const GroupIdPage: React.FC<Props> = (props) => {
   const loading = useAppSelector(selectedLoadingSelector);
   const groupIds = useAppSelector(queryIdsSelector);
   const noOfgroups = groupIds.length;
+  const groupCreator = useAppSelector(selectedGroupCreatorSelector);
 
   const currentIndex = useMemo(() => {
     if (noOfgroups === 0 || noOfgroups === 1) {
@@ -55,6 +58,14 @@ const GroupIdPage: React.FC<Props> = (props) => {
             description={group?.description}
             src={group?.group_image_url}
           ></GroupCard>
+          {groupCreator && <UserCard
+          first_name={groupCreator!.first_name}
+          last_name={groupCreator!.last_name}
+          middle_name={groupCreator!.middle_name}
+          src={groupCreator!.profile_pic_url}
+          id={groupCreator!.id}
+          role={groupCreator!.role}
+        ></UserCard>}
           {currentIndex !== -1 && (
             <div className="flex justify-between ">
               <LinkButton
@@ -91,3 +102,9 @@ const GroupIdPage: React.FC<Props> = (props) => {
 
 GroupIdPage.defaultProps = {};
 export default GroupIdPage;
+
+
+
+
+// single card displaying the Creator 
+// group members list 

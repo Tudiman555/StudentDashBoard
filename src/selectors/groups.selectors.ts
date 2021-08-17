@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import { groupStateSelector } from "./app.selectors";
+import { usersByIdSelector } from "./users.selectors";
 
 export const groupQuerySelector = createSelector(
   [groupStateSelector],
@@ -53,3 +54,9 @@ export const groupsSelector = createSelector(
     return group;
   }
 );
+
+export const groupsCreatorsSelector = createSelector([groupStateSelector],(groupState) => groupState.creators ) 
+
+export const groupCreatorIdSelector = createSelector([groupSelectedIdSelector,groupsCreatorsSelector],(id,creators) => (id ? creators[id] : undefined))
+
+export const selectedGroupCreatorSelector = createSelector([usersByIdSelector,groupCreatorIdSelector],(byId,id) => id ?  byId[id] : undefined )

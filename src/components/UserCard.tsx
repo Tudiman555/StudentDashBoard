@@ -1,12 +1,12 @@
 import React  from "react";
 
 interface Props {
-    first_name? : string
-    last_name? : string
-    middle_name? : string
-    id? : number
-    role? : string
-    src? : string 
+    first_name : string
+    last_name : string
+    middle_name : string
+    id : number
+    role : string
+    src : string 
 }
 
 const UserCard : React.FC<Props> = (props) => {

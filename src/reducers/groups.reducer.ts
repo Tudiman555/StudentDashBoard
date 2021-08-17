@@ -10,7 +10,6 @@ import {
 import { Group } from "../modals/Group";
 import {
   addMany,
-  addOne,
   EntityState,
   getIds,
   initialEntityState,
@@ -21,12 +20,16 @@ import {
 export interface GroupState extends EntityState<Group> {
   query: string;
   queryMap: { [query: string]: number[] };
+  creators : {[groupId : number] : number};
+  members : {[groupId : number] : number[]};
 }
 
 const initialState = {
   ...initialEntityState,
   query: "",
   queryMap: {},
+  creators : {},
+  members : {},
 };
 
 export const groupReducer: Reducer<GroupState> = (
@@ -55,7 +58,9 @@ export const groupReducer: Reducer<GroupState> = (
       return { ...state, SelectedId: action.payload };
 
     case GROUP_FETCH_ONE_RESULTS:
-      return addOne(state, action.payload, false) as GroupState;
+      const group : Group = action.payload
+      const userMembers = group.participants.map((user) => user.id) 
+      return {...state, byId: { ...state.byId, [group.id]: group }, loadingOne : false, creators : {...state.creators, [group.id] : group.creator.id} , members : {...state.members ,[group.id] : userMembers } } as GroupState
     case GROUP_FETCH_ONE_ERROR:
       return setErrorForOne(
         state,

@@ -1,5 +1,6 @@
 import { Reducer } from "redux";
 import {
+  GROUP_FETCH_ONE_RESULTS,
   ME_RECEIVED,
   USERS_RECEIVED,
   USERS_REQUESTED,
@@ -7,6 +8,7 @@ import {
   USER_FETCH_ONE_ERROR,
   USER_FETCH_ONE_RESULTS,
 } from "../actions/actions.constants";
+import { Group } from "../modals/Group";
 import { User } from "../modals/User";
 import {
   addMany,
@@ -28,6 +30,10 @@ export const userReducer: Reducer<UserState> = (
   action
 ) => {
   switch (action.type) {
+    case GROUP_FETCH_ONE_RESULTS :
+      const group : Group = action.payload;
+      const userObj = group.creator;
+      return addOne(state,userObj,false) as UserState;
     case USER_FETCH_ONE:
       return select(state, action.payload) as UserState;
     case USER_FETCH_ONE_RESULTS:

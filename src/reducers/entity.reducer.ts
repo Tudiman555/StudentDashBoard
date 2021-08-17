@@ -35,7 +35,7 @@ export const getIds = (entities: Entity[]) => {
 export const addOne = (state: EntityState<Entity>, entity: Entity ,loading ? :boolean) => {
 
   const loader = loading === undefined ? state.loadingOne : loading;
-  return { ...state, byId: { ...state.byId, [entity.id]: entity }, loadingOne : loader};
+  return { ...state, byId: { ...state.byId, [entity.id]: entity }, loadingOne : loader, };
 };
 
 export const addMany = (state: EntityState, entities: Entity[]) => {

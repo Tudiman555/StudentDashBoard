@@ -38,6 +38,7 @@ const App: FC<Props> = () => {
   }
 
   return (
+    <div className="h-full">
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
@@ -70,6 +71,7 @@ const App: FC<Props> = () => {
         </Route>
       </Switch>
     </BrowserRouter>
+    </div>
   );
 };
 

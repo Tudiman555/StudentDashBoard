@@ -17,12 +17,14 @@ interface Props {
 
 const AppContainer : React.FC<Props> = (props) => {
   return (
-     <>
-        <div>
+     <> <div className="h-full bg-gray-300 ">
+        <div className="sticky top-0 z-10">
         <NavigationBar></NavigationBar>
         </div>
-        <div className="flex w-full bg-gray-300">
+        <div className="hidden h-full md:block md:fixed">
         <SideBar></SideBar>
+        </div>
+        <div className="h-full p-4 md:ml-60">
         <Switch >
         <Route path="/dashboard">
            <Dashboard></Dashboard>
@@ -49,6 +51,7 @@ const AppContainer : React.FC<Props> = (props) => {
            <UserDetailsPage></UserDetailsPage>
         </Route>
         </Switch>
+        </div>
         </div>
      </>
   );

@@ -27,13 +27,12 @@ const groupData = useAppSelector(groupsSelector); /* redux will only render this
   
   return (
      <>
-      <div className="flex flex-col space-y-4">
-        <div>
-          <SearchBar value={query} onChange={handleChange}>
-            {loading && <FaSpinner className="animate-spin"></FaSpinner>}
-          </SearchBar>
-        </div>
-        <div >
+     <div >
+     <SearchBar value={query} onChange={handleChange}>
+            {loading && <div className="pr-2"><FaSpinner className="text-white animate-spin"></FaSpinner></div>}
+      </SearchBar>
+      <div className="pt-5">
+        <div className="grid grid-flow-row grid-cols-3 gap-2">
           {groupData?.map((value,key) => {
             return (
               <div key={value.id}
@@ -50,6 +49,7 @@ const groupData = useAppSelector(groupsSelector); /* redux will only render this
           })}
         </div>
         {!loading && groupData.length === 0 && <div>Sorry No data Found Please try seaching again with a different keyWord</div>}
+        </div>
         </div>
      </>
   );

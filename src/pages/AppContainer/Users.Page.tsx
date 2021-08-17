@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { usersRequestedAction } from "../../actions/users";
+import UserCard from "../../components/UserCard";
 import { usersSelector } from "../../selectors/users.selectors";
 import { useAppSelector } from "../../Store";
 
@@ -17,9 +18,18 @@ const UsersPage: React.FC<Props> = () => {
 
   return (
     <>
-      <div className="p-2 space-y-2 ">
+      <div className="grid grid-cols-3 gap-2">
         {users.map((user) => (
-          <div className="flex flex-col" key={user.id}><Link to={"/people/" + user.id} className="p-2 bg-white rounded-lg hover:bg-gray-400">{user.first_name}</Link></div>
+          <Link to={"/people/" + user.id} >
+          <UserCard
+          first_name={user?.first_name}
+          last_name={user?.last_name}
+          middle_name={user?.middle_name}
+          src={user?.profile_pic_url}
+          id={user?.id}
+          role={user?.role}
+        ></UserCard>
+          </Link>
         ))}
       </div>
     </>

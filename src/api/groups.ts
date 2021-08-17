@@ -23,6 +23,6 @@ import { BASE_URL, get } from "./base";
 
   export const fetchGroupDetails = (id : number ) => {
     const url = BASE_URL + "/groups/" + id;
-    return axios.get<GroupResponse>(url);
+    return axios.get<GroupByIdResponse>(url).then(response => response.data.data);
   }
      

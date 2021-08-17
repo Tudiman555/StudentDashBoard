@@ -1,5 +1,6 @@
 import React from "react";
 import CorkLogo from "../../images/Corklogo.svg"
+import DropDownMenu from "../DropDownMenu";
 import SearchBar from "../SearchBar/SearchBar";
 
 interface Props {
@@ -16,6 +17,9 @@ const NavigationBar : React.FC<Props> = (props) => {
                 <a href="/" className="px-3 text-2xl font-semibold text-white">CORK</a>
                 </div>
                 <SearchBar></SearchBar>
+                <ul className="p-2 ml-auto">
+                  <DropDownMenu></DropDownMenu>
+                </ul>
             </header>
 
             

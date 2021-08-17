@@ -58,14 +58,14 @@ const GroupIdPage: React.FC<Props> = (props) => {
             description={group?.description}
             src={group?.group_image_url}
           ></GroupCard>
-          {groupCreator && <UserCard
+          <UserCard
           first_name={groupCreator!.first_name}
           last_name={groupCreator!.last_name}
           middle_name={groupCreator!.middle_name}
           src={groupCreator!.profile_pic_url}
           id={groupCreator!.id}
           role={groupCreator!.role}
-        ></UserCard>}
+          ></UserCard>
           {currentIndex !== -1 && (
             <div className="flex justify-between ">
               <LinkButton

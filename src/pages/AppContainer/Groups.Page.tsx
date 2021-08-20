@@ -27,7 +27,7 @@ const groupData = useAppSelector(groupsSelector); /* redux will only render this
   
   return (
      <>
-     <div >
+     <div className="">
      <SearchBar value={query} onChange={handleChange}>
             {loading && <div className="pr-2"><FaSpinner className="text-white animate-spin"></FaSpinner></div>}
       </SearchBar>

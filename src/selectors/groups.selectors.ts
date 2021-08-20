@@ -55,8 +55,9 @@ export const groupsSelector = createSelector(
   }
 );
 
-export const groupsCreatorsSelector = createSelector([groupStateSelector],(groupState) => groupState.creators ) 
+export const groupCreatorIdSelector = createSelector([selectedGroupSelector],(group) => group?.creator)
+export const groupMembersIdsSelector = createSelector([selectedGroupSelector],(group) => group?.participants as any || [])
 
-export const groupCreatorIdSelector = createSelector([groupSelectedIdSelector,groupsCreatorsSelector],(id,creators) => (id ? creators[id] : undefined))
+export const selectedGroupCreatorSelector = createSelector([usersByIdSelector,groupCreatorIdSelector],(byId,id) => id ?  byId[id as any] : undefined )
 
-export const selectedGroupCreatorSelector = createSelector([usersByIdSelector,groupCreatorIdSelector],(byId,id) => id ?  byId[id] : undefined )
+export const selectedGroupMembers = createSelector([usersByIdSelector,groupMembersIdsSelector],(byId,member)=> member!.map((id : any)=> byId[id] ) )

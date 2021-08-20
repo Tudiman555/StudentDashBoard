@@ -1,5 +1,5 @@
 import { User } from "../modals/User"
-import { USERS_RECEIVED, USERS_REQUESTED, USER_FETCH_ONE, USER_FETCH_ONE_ERROR, USER_FETCH_ONE_RESULTS } from "./actions.constants"
+import { USERS_RECEIVED, USERS_REQUESTED, USER_FETCH_ONE, USER_FETCH_ONE_ERROR, USER_FETCH_ONE_RESULTS, USER_LIST_RECEIVED } from "./actions.constants"
 
 
 
@@ -21,6 +21,8 @@ export const userfetchOne = ( id : number ) => ({
   }) 
   
   export const userfetchOneError = (id : number , msg : string) => ({type : USER_FETCH_ONE_ERROR,payload : {id , msg}})
+
+  export const userListReceivedAction = (usersById : {[id:number]: User}) =>({type : USER_LIST_RECEIVED , payload : usersById })
   
   
   

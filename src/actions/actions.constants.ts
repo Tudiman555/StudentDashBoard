@@ -17,6 +17,7 @@ export const GROUP_SELECTED_ID = "group/selected/id";
 export const USER_SELECTED_ID = "user/selected/id";
 export const USERS_REQUESTED = "users/requested";
 export const USERS_RECEIVED = "users/received";
+export const USER_LIST_RECEIVED = "user_list/received";
 
 // actions for Individual User
 export const USER_FETCH_ONE = "user/fetch_one";

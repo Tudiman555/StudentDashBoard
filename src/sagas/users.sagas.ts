@@ -22,8 +22,10 @@ export function* watchUsers() {
 function* fetchUserDetails(action : any) : Generator<any>{
 
     try {
-    const userResponse : any = yield call(fetchUserDetailsAPI,action.payload)
-    yield put(userfetchOneResults(userResponse.data.data));
+        /* this yield provides a object of type call to middleware and whenever middleware receives the Promise
+        it stops the saga from executing further until promise is resolved*/
+    const userResponse : any = yield call(fetchUserDetailsAPI,action.payload)    
+    yield put(userfetchOneResults(userResponse.data.data));  // this yield provides an effect i.e. 'put' and saga is stopped here until this effect does its job.
     }
 
     catch(e) {
@@ -42,3 +44,8 @@ export function* watchUserDetails() {
 
 
 
+//Effects are plain JavaScript objects which contain instructions to be fulfilled by the middleware. Example call , put etc
+
+/*call just like put, returns an Effect which instructs the middleware 
+to call a given function with the given arguments. In fact, neither put nor call 
+performs any dispatch or asynchronous call by themselves, they return plain JavaScript objects.*/

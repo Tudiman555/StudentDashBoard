@@ -1,4 +1,4 @@
-import React  from "react";
+import React, { memo }  from "react";
 
 interface Props {
     first_name : string
@@ -29,5 +29,5 @@ const UserCard : React.FC<Props> = (props) => {
 
 UserCard.defaultProps = {
 }
-export default UserCard;
+export default memo(UserCard);
 

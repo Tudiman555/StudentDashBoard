@@ -47,7 +47,7 @@ const Profile: React.FC<Props> = (props) => {
   });
   return (
     <>
-      <div className="relative flex flex-col w-10/12 px-4 mt-4">
+      <div className="relative flex flex-col w-full px-4 mt-4">
         <ProfileSectionCard sectionTitle="General Information">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row">

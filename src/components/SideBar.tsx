@@ -11,7 +11,7 @@ const SideBar: React.FC<Props> = (props) => {
   const user = useAppSelector((state)=> state.users.byId[state.auth.id!]);
   return (
     <>
-      <div className="top-0 z-10 h-screen w-60">
+      <div className="top-0 z-10 h-full w-60">
         <div className="flex flex-col items-center h-full text-white bg-gray-300 border-r border-gray-400 rounded-sm">
           <div className="text-center text-red-600">{user!.first_name}</div>
           <div className="space-y-2">

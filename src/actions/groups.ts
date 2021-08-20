@@ -4,16 +4,16 @@ import { GROUPS_QUERY_CHANGED, GROUPS_QUERY_RESULTS, GROUP_FETCH_ONE, GROUP_FETC
 
 
 
-
-export const groupQueryResultsAction = (groups: Group[], query : string) => ({
-    type: GROUPS_QUERY_RESULTS,
-    payload: {groups : groups, query :query },
-  });
-
 export const groupQueryChangedAction = ( query : string ) => ({
-    type : GROUPS_QUERY_CHANGED,
-    payload : query
+  type : GROUPS_QUERY_CHANGED,
+  payload : query
 })
+
+
+export const groupQueryResultsAction = (groupsById: {[id : number] : Group}, query : string) => ({
+    type: GROUPS_QUERY_RESULTS,
+    payload: {groupsById : groupsById, query :query },
+  });
 
 
 

@@ -17,7 +17,7 @@ interface Props {
 
 const AppContainer : React.FC<Props> = (props) => {
   return (
-     <> <div className="h-full bg-gray-300 ">
+     <div className="h-full bg-gray-300 ">
         <div className="sticky top-0 z-10">
         <NavigationBar></NavigationBar>
         </div>
@@ -53,7 +53,6 @@ const AppContainer : React.FC<Props> = (props) => {
         </Switch>
         </div>
         </div>
-     </>
   );
 };
 

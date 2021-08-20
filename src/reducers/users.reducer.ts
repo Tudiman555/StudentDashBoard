@@ -1,15 +1,13 @@
 import { Reducer } from "redux";
 import {
-  GROUPS_QUERY_RESULTS,
-  GROUP_FETCH_ONE_RESULTS,
   ME_RECEIVED,
   USERS_RECEIVED,
   USERS_REQUESTED,
   USER_FETCH_ONE,
   USER_FETCH_ONE_ERROR,
   USER_FETCH_ONE_RESULTS,
+  USER_LIST_RECEIVED,
 } from "../actions/actions.constants";
-import { Group } from "../modals/Group";
 import { User } from "../modals/User";
 import {
   addMany,
@@ -31,10 +29,6 @@ export const userReducer: Reducer<UserState> = (
   action
 ) => {
   switch (action.type) {
-    /*case GROUP_FETCH_ONE_RESULTS :
-      const group : Group = action.payload;
-      const userObj = group.creator;
-      return addOne(state,userObj,false) as UserState;*/
     case USER_FETCH_ONE:
       return select(state, action.payload) as UserState;
     case USER_FETCH_ONE_RESULTS:
@@ -55,15 +49,9 @@ export const userReducer: Reducer<UserState> = (
       const newState = addMany(state, users) as UserState;
       return { ...newState, loadingList: false };
     }
-    case GROUPS_QUERY_RESULTS: {
-        const groups = action.payload.groups;
-        const users = groups.reduce((users : User[],group : Group) => [...users, group.creator,...group.participants,...group.invitedMembers],[])
-        return addMany(state,users) as UserState;
-    }
-    case GROUP_FETCH_ONE_RESULTS : {
-      const group : Group = action.payload;
-      const users = [group.creator,...group.invitedMembers,...group.participants]
-      return addMany(state,users) as UserState
+    case USER_LIST_RECEIVED : {
+      const usersById = action.payload;
+      return { ...state, byId : { ...state.byId , ...usersById}}
     }
     default:
       return state;

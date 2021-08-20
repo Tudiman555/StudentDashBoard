@@ -1,4 +1,4 @@
-import React, { ImgHTMLAttributes } from "react";
+import React, { ImgHTMLAttributes, memo } from "react";
 
 interface Props extends ImgHTMLAttributes<HTMLImageElement>{
     title? : string
@@ -27,4 +27,4 @@ const GroupCard : React.FC<Props> = ({src,description,title}) => {
 
 GroupCard.defaultProps = {
 }
-export default GroupCard;
+export default memo(GroupCard);

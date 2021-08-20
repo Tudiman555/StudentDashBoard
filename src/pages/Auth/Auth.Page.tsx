@@ -12,7 +12,7 @@ interface Props {
 const auth : React.FC<Props> = (props) => {
   return (
      <>
-     <div className="flex justify-between ">
+     <div className="flex justify-between bg-white">
         <Switch>
         <Route path='/' exact>
             <Redirect to="login"></Redirect>

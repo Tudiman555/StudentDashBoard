@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { memo, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 import {useParams } from "react-router-dom";
@@ -10,6 +10,7 @@ import {
   queryIdsSelector,
   selectedErrorSelector,
   selectedGroupCreatorSelector,
+  selectedGroupMembers,
   selectedGroupSelector,
   selectedLoadingSelector,
 } from "../../selectors/groups.selectors";
@@ -19,6 +20,7 @@ interface Props {}
 
 const GroupIdPage: React.FC<Props> = (props) => {
   const groupId = +useParams<{ groupId: string }>().groupId;
+  console.log(groupId);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(groupfetchOne(groupId));
@@ -30,23 +32,27 @@ const GroupIdPage: React.FC<Props> = (props) => {
   const groupIds = useAppSelector(queryIdsSelector);
   const noOfgroups = groupIds.length;
   const groupCreator = useAppSelector(selectedGroupCreatorSelector);
-
+  const members = useAppSelector(selectedGroupMembers);
   const currentIndex = useMemo(() => {
     if (noOfgroups === 0 || noOfgroups === 1) {
       return -1;
     }
     let index = 0;
     groupIds.forEach((element, currentIndex) => {
-      if (element === groupId) {
+      if (+element === groupId) {
         index = currentIndex;
       }
     });
     return index;
   }, [groupIds, groupId]);
+  console.log("current index" ,currentIndex);
 
   if (error) {
     return <div>{error}</div>;
   }
+  const nextUrl = "/groups/"+groupIds[(currentIndex === noOfgroups - 1) ? currentIndex : currentIndex + 1]
+  const preUrl =  "/groups/"+groupIds[(currentIndex === 0) ? currentIndex : currentIndex - 1]
+  console.log(members)
 
   return (
     <>
@@ -58,39 +64,37 @@ const GroupIdPage: React.FC<Props> = (props) => {
             description={group?.description}
             src={group?.group_image_url}
           ></GroupCard>
-          <UserCard
+          {groupCreator !== undefined ? <div>This is Creator Of This Group<UserCard
           first_name={groupCreator!.first_name}
           last_name={groupCreator!.last_name}
           middle_name={groupCreator!.middle_name}
           src={groupCreator!.profile_pic_url}
           id={groupCreator!.id}
           role={groupCreator!.role}
-          ></UserCard>
+          ></UserCard></div> : <div>Creator Of This Group Does Not Exist</div>}
+          {(members.length !== 0) ? (<div>These Are The Members{members.map((member : any) => <UserCard
+          first_name={member?.first_name}
+          last_name={member?.last_name}
+          middle_name={member?.middle_name}
+          src={member?.profile_pic_url}
+          id={member?.id}
+          role={member?.role}
+          ></UserCard> )}
+          </div>) : <div>There Are No Member in This Group</div>}
           {currentIndex !== -1 && (
             <div className="flex justify-between ">
               <LinkButton
               title="Previous"
-                directTo={
-                  "/groups/" +
-                  groupIds[currentIndex === 0 ? currentIndex : currentIndex - 1]
-                }
-                disabled = {currentIndex === 0}
+                directTo={preUrl}
+                disabled = {currentIndex === 0 ? true : false}
               >
-                Previous
+                {"Previous"}
               </LinkButton>
               <LinkButton
               title="Next"
-                directTo={
-                  "/groups/" +
-                  groupIds[
-                    currentIndex === noOfgroups - 1
-                      ? currentIndex
-                      : currentIndex + 1
-                  ]
-                }
-                disabled={currentIndex === noOfgroups-1}
-              >
-                Next
+                directTo={nextUrl}
+                disabled={currentIndex === noOfgroups-1}>
+                {"Next"}
               </LinkButton>
             </div>
           )}
@@ -101,7 +105,7 @@ const GroupIdPage: React.FC<Props> = (props) => {
 };
 
 GroupIdPage.defaultProps = {};
-export default GroupIdPage;
+export default memo(GroupIdPage);
 
 
 

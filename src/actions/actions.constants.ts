@@ -30,5 +30,11 @@ export const GROUP_FETCH_ONE_RESULTS = "group/fetch_one_results"
 export const GROUP_FETCH_ONE_ERROR = "group/fetch_one_error"
 
 
+//actions for app State 
+
+export const MENU_TOGGLE = "menu/toggle"
+export const SIDEBAR_TOGGLE = "sidebar/toggle"
+
+
  
  

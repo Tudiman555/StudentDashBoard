@@ -1,6 +1,7 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { appContainerReducer} from "./reducers/app.reducer";
 import { authReducer } from "./reducers/auth.reducer";
 import { groupReducer } from "./reducers/groups.reducer";
 import { userReducer } from "./reducers/users.reducer";
@@ -10,6 +11,7 @@ const reducer = combineReducers({
   users: userReducer,
   groups: groupReducer,
   auth: authReducer,
+  appContainer : appContainerReducer,
 });
 
 export type AppState = ReturnType<typeof reducer>;

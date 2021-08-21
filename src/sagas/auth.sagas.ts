@@ -1,9 +1,8 @@
 import { takeEvery , call,put} from "@redux-saga/core/effects"
 import { AnyAction } from "redux";
 import { ME_LOGIN, ME_REQUESTED, } from "../actions/actions.constants"
-import { meReceivedAction } from "../actions/auth"
+import {meReceivedAction } from "../actions/auth"
 import  {Login, me as meAPI}  from "../api/auth"
-import { LS_AUTH_TOKEN } from "../api/base";
 
 export function* me() : Generator<any> {
     const user : any = yield call(meAPI);
@@ -16,10 +15,14 @@ export function* userInfoRequestedSaga() {
 
 
 export function* login(action : AnyAction) : Generator<any> {
-    const response : any = yield call(Login,{ email : action.payload.email, password : action.payload.password})
-    localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
-    yield put(meReceivedAction(response.data.user));
-    window.location.href = "/dashboard"
+    try{
+    const user : any = yield call(Login,{ email : action.payload.email, password : action.payload.password})
+    yield put(meReceivedAction(user));
+    }
+    catch(e) {
+        console.log(e);
+    }
+
 
 }
 

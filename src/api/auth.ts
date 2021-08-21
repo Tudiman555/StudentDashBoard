@@ -19,7 +19,11 @@ interface LoginResponse {
 export const Login = (data: LoginRequest) => {
   const url = BASE_URL + "/login";
 
-  return axios.post<LoginResponse>(url, data)
+  return axios.post<LoginResponse>(url, data).then(response => {
+    localStorage.setItem(LS_AUTH_TOKEN, response.data.token) 
+    window.location.href = "/dashboard"
+  }
+  )
 };
 
 export const Logout = () => {

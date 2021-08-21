@@ -8,3 +8,5 @@ export const meSelector = createSelector(
     return me;
   }
 );
+
+export const meErrorSelector = createSelector([authStateSelector],(authState)=> authState.error)

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import Input from "../../components/Input/Input";
-import { HiOutlineUser, HiOutlineLockClosed} from "react-icons/hi";
+import { HiOutlineUser, HiOutlineLockClosed, HiOutlineExclamationCircle, HiOutlineX} from "react-icons/hi";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
@@ -10,8 +10,10 @@ import ToggleButton from "../../components/ToggleButton";
 import CheckedBox from "../../components/CheckedBox";
 import { useFormik } from "formik";
 import * as yupp from "yup";
-import { meLoginAction } from "../../actions/auth";
-import { store } from "../../Store";
+import { meErrorAction, meLoginAction } from "../../actions/auth";
+import { store, useAppSelector } from "../../Store";
+import { meErrorSelector } from "../../selectors/auth.selectors";
+import { Dialog } from "@headlessui/react";
 
 interface Props {
 }
@@ -23,13 +25,15 @@ const LoginPage: React.FC<Props> = (props) => {
     handleBlur,
     handleChange,
     handleSubmit,
+    setSubmitting,
+    isValid,
     touched,
     values,
     isSubmitting,
     errors,
   } = useFormik({
     initialValues: { email: "", password: "" },
-    
+    initialErrors : {email : "This Field is Required", password : "This Field is Required"},
     validationSchema: yupp.object().shape({
       email: yupp.string().required().email(),
       password: yupp.string().required().min(8),
@@ -43,16 +47,34 @@ const LoginPage: React.FC<Props> = (props) => {
      const goToSignUp = () => {
        history.push("/signUp")
      }
-
-  let isButtonDiabled: boolean = true;
+  const error = useAppSelector(meErrorSelector);
+  console.log(error)
   
-  if (!(errors.email || errors.password)) {
-    isButtonDiabled = false;
+  const closeDialog = () => {
+    store.dispatch(meErrorAction(undefined))
+    setSubmitting(false)
   }
 
   return (
     <>
-      <div className="w-full tracking-wider lg:w-1/2 font-primary">
+      
+      <div className="relative w-full tracking-wider lg:w-1/2 font-primary">
+      {error &&
+      <div>
+        <Dialog open={true} className="fixed inset-0 z-10 flex items-center justify-center" onClose={closeDialog}>
+          <Dialog.Overlay className="fixed inset-0 bg-black opacity-75"/>
+          
+          <div className="absolute flex flex-col items-center justify-center w-1/2 bg-white rounded-md h-1/5">
+            <button onClick={closeDialog}><HiOutlineX className="absolute w-5 h-5 text-red-800 top-2 right-2 hover:bg-red-400 "></HiOutlineX></button>
+            <HiOutlineExclamationCircle className="w-5 h-5 text-red-800 sm:w-10 sm:h-10"></HiOutlineExclamationCircle>
+            <Dialog.Title className="text-lg font-bold tracking-wider text-center text-red-800 sm:text-2xl">Error</Dialog.Title>
+          
+          <Dialog.Description className="text-sm text-red-800 sm:text-base">
+        {error}
+      </Dialog.Description>
+          </div>
+      
+        </Dialog></div> }
         <div className="flex flex-col justify-center h-screen mx-auto max-w-480p px-x py-y">
           <h1 className="pb-2 text-4xl">
             Log In to{" "}
@@ -110,7 +132,7 @@ const LoginPage: React.FC<Props> = (props) => {
               <Button 
                 title="Log in"
                 type="submit"
-                disabled={isButtonDiabled}
+                disabled={!isValid || isSubmitting}
                 theme ="Primary"
               ></Button>
               {isSubmitting && <FaSpinner className="animate-spin"></FaSpinner>}

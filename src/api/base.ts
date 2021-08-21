@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { CANCEL } from "redux-saga";
+import { meErrorAction } from "../actions/auth";
+import { store } from "../Store";
 
 export const BASE_URL = "https://api-dev.domecompass.com";
 
@@ -23,8 +25,17 @@ axios.interceptors.response.use(undefined, (error) => {
     window.location.href = "/login";
   }
   if(error.response?.data?.code === 8102 ) {
-    console.log("running")
+    console.log("Page Not Found")
     window.location.href = "/error";
+  }
+  if(error.message === "Network Error") {
+    console.log("Network Error")
+    store.dispatch(meErrorAction("Network Error"))
+  }
+  if(error.response?.data?.code === 201) {
+    const error = "User Not Found!"
+    console.log(error) 
+    store.dispatch(meErrorAction(error))
   }
   return Promise.reject(error);
 });

@@ -4,6 +4,7 @@
 export const ME_REQUESTED = "me/requested"
 export const ME_RECEIVED = "me/received"
 export const ME_LOGIN = "me/login"
+export const ME_ERROR = "me/error"
 
 //groups
 
